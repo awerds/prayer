@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {lessonBody} from '../liturgy.js';
+const day=date=>JSON.parse(readFileSync(new URL(`../data/liturgy/${date}.json`,import.meta.url),'utf8'));
+const ordinary=day('2026-11-13');
+const gospel=lessonBody(ordinary.hours.Missa.sections.find(s=>s.title==='Gospel'));
+assert(gospel.includes('Do not be afraid, little flock'));
+assert(!gospel.includes('Cleanse my heart'), 'Lessons view should open at Scripture rather than the preparatory prayers');
+const matins=ordinary.hours.Matutinum.sections.filter(s=>s.reading);
+assert(lessonBody(matins[0]).includes('Daniel praying'));
+assert(!lessonBody(matins[2]).includes('Te Deum'), 'A saint reading should not include the subsequent hymn in lessons-only mode');
+const vigil=day('2026-04-04');
+const first=lessonBody(vigil.hours.Missa.sections.find(s=>s.title==='THE FIRST READING'));
+assert(first.includes('In the beginning, God created'));
+assert(!first.includes('deacon'), 'Lessons view should leave ceremonial directions in complete-text mode');
+const second=lessonBody(vigil.hours.Missa.sections.find(s=>s.title==='THE SECOND READING'));
+assert(second.includes('Exo. 14:24-31; 15:1')&&second.includes('Exod 15:1-2'),'Retain both the reading and its referenced canticle');
+console.log('Verified focused Gospel, Matins, and Easter Vigil lesson views.');

@@ -1,0 +1,40 @@
+name: Deploy GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify liturgy and lessons
+        run: |
+          python3 scripts/check_liturgy.py
+          node --check app.js
+          node --check liturgy.js
+          node --check sw.js
+          node scripts/check_reader.mjs
+      - name: Prepare public files
+        run: |
+          mkdir -p public
+          cp index.html app.js liturgy.js prayers.js voice.js style.css sw.js manifest.webmanifest public/
+          cp -R assets data public/
+          touch public/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
