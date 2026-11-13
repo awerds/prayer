@@ -1,60 +1,128 @@
-# Ora
+# Ora — User manual
 
-A static traditional Catholic prayer app with a guided starting point, a prayer treasury, and the daily Roman liturgy. No package install, backend, analytics, account, or API key.
+**[Open Ora](https://awerds.github.io/prayer/)** · [Releases](https://github.com/awerds/prayer/releases) · [Security review](SECURITY.md) · [Maintenance guide](docs/MAINTAINING.md)
 
-## Preview
+Ora is a traditional Catholic prayer companion with guided prayer, a searchable treasury, and the daily Mass and Divine Office. Its stained-glass background and frosted reading panels provide a quiet place to read or listen. No account is required.
 
-Run `python3 -m http.server 4173` in this directory and visit http://localhost:4173.
+![Ora home screen](docs/screenshots/today.jpg)
 
-## Included
+## Start your first prayer
 
-- Guided prayer paths for beginning a daily habit, worry and protection, evening recollection, and Eucharistic devotion. Each has step-by-step instructions, actual prayer text, listening, and browser-local resume/completion state.
-- A home screen with today's celebration and direct links to the appointed Mass lesson and Gospel.
-- The Mass and all eight canonical hours for every date in 2026–2027, generated with the Divinum Officium 1960 calendar engine. Includes complete English texts, psalms, brief chapters, Scripture selections, Matins lessons, and textual rubrics. The traditional calendar can differ from local diocesan calendars.
-- In-app calendar navigation, lessons-only and complete-text views, section navigation, contextual starting instructions, and listening for each section. Date, hour, and view are retained in a shareable hash URL.
-- 16 traditional private prayers with Latin titles, English texts, meanings, and customary uses. Search, categories, essentials and Pietà-style collections, and saved favorites.
-- Installed English speech voices are preferred (`localService`), with fallback to the device speech service if unavailable or if the selected voice fails. Reading pace and text size are adjustable. There is no bundled neural TTS model. Device defaults may use an online service; offline speech requires a working installed voice.
-- Service-worker caching for the app and browser caching of each opened liturgical day. The full two-year corpus is hosted statically, but only the selected day is downloaded. Previously opened days work offline; this does not download two years to the device at installation. HTTPS or localhost is required for offline support.
+1. Open **Today** (the sun icon on a narrow screen).
+2. Select **Guide me in prayer**.
+3. Read the short instruction and the prayer beneath it. Use **Listen** if you prefer spoken prayer.
+4. Use **Next step** to move through the four steps. **Previous step** goes back; **Start over** returns to the beginning.
+5. Select **Finish prayer** on the last step to return home.
 
-The application files are about 65 KB before compression. The calendar index is about 220 KB, and an ordinary liturgical day is about 125 KB. The complete static text corpus is about 85 MB. No liturgical source service is called at runtime.
+Your place is saved in this browser for the current day. Returning to Today after advancing a step shows **Continue your prayer**. Guided steps advance using their buttons; timed call-and-response is available in the separate prayer reader described below.
 
-## GitHub Pages
+![Guided prayer](docs/screenshots/guided-prayer.jpg)
 
-Push this repository to GitHub on `main`. Pages deploys from the root of the `gh-pages` branch. Source lives on `main`; copy only the public app files, assets, and data into `gh-pages` when updating. An optional Actions workflow template is provided at `scripts/pages-workflow.yml.example` for credentials with workflow permission. All asset paths are relative, so GitHub project Pages subdirectories work. Hash routes require no server rewriting. Repository: https://github.com/awerds/prayer. GitHub Pages publication uses the gh-pages branch. See SECURITY.md for the security review and remaining limitations.
+## Find a prayer for your day
 
-Run checks locally:
+On Today, choose an intention under **What brings you to prayer?**:
 
-```sh
-node --check app.js
-node --check liturgy.js
-node --check prayers.js
-node --check sw.js
-python3 scripts/check_liturgy.py
-node scripts/check_reader.mjs
-```
+| Path | What it offers |
+| --- | --- |
+| I’m carrying a worry | Trust, guidance, and protection |
+| I want to begin again | Gratitude, examination of conscience, and contrition |
+| I want to draw closer to Jesus | Spiritual Communion and Eucharistic devotion |
 
-## Liturgical text provenance and regeneration
+The **A rhythm for your day** cards open the Morning Offering, Angelus, and Act of Contrition. The evening card is an entry into recollection, rather than the complete Office of Compline.
 
-Generated from [Divinum Officium](https://github.com/DivinumOfficium/divinum-officium) commit `e8feeaeddca16e27e6eb349dcfb29c795d62198a`, following **Rubrics 1960 - 1960**, English, first Mass when a day provides multiple Masses. Textual rubrics and responses are retained; presentation is plain text with app-specific section headings. This app does not provide a modern lectionary, the 1970 Liturgy of the Hours, local calendars, or alternate Christmas Masses. The source's MIT license is retained at `data/liturgy/LICENSE.txt` and linked from the reader.
+## Explore the prayer library
 
-The generator uses the source calendar engine instead of calculating feast precedence independently. It includes all Mass lessons and Matins readings, including non-Scriptural patristic and hagiographical lessons. References are retained beside their complete appointed text. Psalm numbering follows the source's traditional numbering.
+Open **Prayer library** (the book/list icon). Choose **All prayers**, **Start with the essentials**, or **Pietà-style devotions**. Then filter by category or search for a title, Latin title, phrase, intention, or meaning. Search and category filters apply within the selected collection.
 
-To regenerate or extend coverage, use a source checkout at the pinned commit, Python 3, Perl, and the Perl CGI module (`CGI.pm`):
+Select a prayer to open its full text, **Meaning & use**, and source reference. Choose **Save** to add it to **Saved prayers** (the heart icon). Selecting **Saved** again removes it. Close the reader with **×** or Escape.
 
-```sh
-git clone https://github.com/DivinumOfficium/divinum-officium.git /tmp/ora-divinum-officium
-git -C /tmp/ora-divinum-officium checkout e8feeaeddca16e27e6eb349dcfb29c795d62198a
-python3 scripts/build_liturgy.py --source /tmp/ora-divinum-officium --start 2026-01-01 --end 2027-12-31
-python3 scripts/check_liturgy.py
-node scripts/check_reader.mjs
-```
+The library contains 16 private prayers. The six Pietà-style selections are the Memorare, Anima Christi, Prayer Before a Crucifix, Spiritual Communion, Saint Michael prayer, and Salve Regina. This collection is not a complete reproduction of a particular Pietà Prayer Book edition.
 
-The generator resumes completed dates. Use `--force` to regenerate existing dates. Expanding the date range retains previously generated dates in the index. No runtime generation is required for GitHub Pages. Review future source updates and advance the pinned revision deliberately.
+![Prayer library](docs/screenshots/library.jpg)
 
-## Prayer treasury
+## Choose your voice and reading preferences
 
-The Pietà-style collection includes the Memorare, Anima Christi, Prayer Before a Crucifix, Spiritual Communion, Saint Michael prayer, and Salve Regina. It is not a reproduction of a specific Pietà Prayer Book edition. Editorial explanations distinguish liturgical texts and private devotions. No approval, indulgence, or devotional promise is inferred from inclusion. A specific edition and its publication details would be needed for an edition-specific catalog.
+Open **Voice settings** using the music-note button near the date. On wider screens, you can also choose **Reading & voice** in the sidebar. Your first attempt to listen asks you to choose a voice source. Choose one, close settings, and press Listen again.
 
-English devotional formulations vary by edition. Vatican News links are general prayer references rather than proof of every exact wording or a prayer-specific imprimatur. Explanations and guided instructions are editorial summaries. Sources include [Vatican News prayers](https://www.vaticannews.va/en/prayers.html), the [Catechism on the Lord's Prayer](https://www.vatican.va/content/catechism/en/part_four/section_two.html), and the [Enchiridion Indulgentiarum](https://www.vatican.va/content/dam/wss/roman_curia/tribunals/apost_penit/documents/rc_trib_appen_doc_20020826_enchiridion-indulgentiarum_lt.html). Content should receive Catholic editorial review before being presented as an authoritative prayer book.
+| Option | How it works |
+| --- | --- |
+| **Use device voices** | No model download. Installed English voices are preferred; the device’s default service may require internet. Choose an available voice in **Reading voice**. |
+| **Download higher-quality browser voice** | Downloads the optional Kokoro model, roughly 100 MB plus runtime files. Keep the page open until it reports that the voice is ready. Speech is generated in the browser using a fixed voice. |
 
-To add private prayers, extend `prayers.js`. When changing app shell assets, increase the shell cache version in `sw.js`. Opened daily texts are kept in a separate browser cache across shell updates.
+Use **Reading pace** to adjust speed from 0.5× to 1.2×. Choose **Comfortable**, **Large**, or **Extra large** under **Prayer text size**. The device voice selector applies to device speech, not the fixed Kokoro voice.
+
+Browser voice files come from third-party hosting and are cached where supported. Browsers can clear that cache. A failed browser speech attempt falls back to device speech; a failed download offers a retry or device voices. Browser-model playback has not yet been verified end to end on every supported device.
+
+![Voice and reading settings](docs/screenshots/voice-settings.jpg)
+
+## Pray with timed call and response
+
+1. In voice settings, choose **Call and response · timed pauses** under **Prayer style**.
+2. Close settings and open a prayer from the library or a daily prayer card.
+3. Select **Listen to prayer**.
+4. Listen to the displayed line, then repeat it or give your response during the pause. The next line starts automatically.
+
+Longer lines receive longer pauses. Timing also follows your selected reading pace, with a minimum pause of four seconds. **Stop** cancels both speech and the pending pause; listening again restarts the prayer. Closing the reader or navigating away also stops playback.
+
+This mode uses timed silence, not a microphone or speech recognition. It does not detect whether you have finished responding. The current mode splits the text into spoken phrases for repetition; it does not automatically assign traditional leader/congregation parts. Guided prayer steps continue to use their own Next step buttons.
+
+Choose **Read continuously** to hear the whole text without response pauses.
+
+## Read the liturgy and its lessons
+
+Today shows the day’s celebration and shortcuts to its appointed Mass lesson and Gospel. Select **The liturgy** (the cross icon) to explore further.
+
+1. Use **Choose a day**, the arrows, or **Today** to set the date.
+2. Select **Holy Mass** or one of the eight canonical hours.
+3. For Mass or Matins, choose **Lessons only** for focused reading or **Complete text** for the surrounding prayers and directions.
+4. Use the contents links to jump to a section. **Listen** opens that section in the prayer reader.
+5. Expand **How do I begin?** for introductory guidance.
+
+The date, hour, and selected view are included in the address bar, so you can copy the URL to share that view.
+
+| Hour | Traditional place in the day |
+| --- | --- |
+| Matins | Night office and longer lessons |
+| Lauds | Morning praise |
+| Prime | First hour and the day’s work |
+| Terce | Third hour, traditionally around 9 a.m. |
+| Sext | Sixth hour, around noon |
+| None | Ninth hour, around 3 p.m. |
+| Vespers | Evening praise |
+| Compline | Prayer before rest; a useful starting point |
+
+**Reading marks:** P. means priest; S. means server; ℣. marks a verse and ℟. a response. Psalm numbering follows the traditional source. Complete-text mode retains ceremonial directions; lessons-only mode removes selected surrounding directions and prayers for easier reading.
+
+![Liturgy reader](docs/screenshots/liturgy.jpg)
+
+### Calendar and text coverage
+
+The included calendar covers **January 1, 2026 through December 31, 2027**, using **1960 Roman rubrics** and English texts generated from [Divinum Officium](https://www.divinumofficium.com/). It includes 730 days of Mass and all eight hours, with Scripture, patristic, and saint readings.
+
+Local diocesan or religious calendars may differ. When a day offers multiple Masses, the first is included. Alternate Christmas Masses, the modern lectionary, and the 1970 Liturgy of the Hours are not included. The [maintenance guide](docs/MAINTAINING.md) records the exact source revision and regeneration instructions; the [source license](data/liturgy/LICENSE.txt) is retained.
+
+Private devotions and editorial guidance are distinct from official liturgical texts. Inclusion does not assert an imprimatur, indulgence, or approval of associated devotional promises.
+
+## Offline use and saved information
+
+Open Ora while connected before relying on it offline. The application and private prayer library are cached; each liturgical day is cached when opened. Open the dates you plan to use beforehand. The entire two-year calendar is not downloaded automatically.
+
+Offline speech requires a working installed voice or available browser-model/runtime files. The optional download does not guarantee offline operation on every browser. Saved prayers, preferences, and guided progress stay in the current browser; they do not sync across devices. Clearing site data or using a private browsing session can remove them. No microphone access is needed.
+
+## Troubleshooting
+
+| Problem | What to try |
+| --- | --- |
+| Nothing speaks | Choose a voice source, close settings, and press Listen again. Check volume and select another device voice. |
+| Browser voice download fails | Keep the tab open on a stable connection, retry, or choose device voices. |
+| Response pauses feel too short | Reduce Reading pace; pauses grow with the estimated speaking time. |
+| A date is unavailable | Choose a date in 2026–2027. If offline, reconnect and open that date once. |
+| Search finds nothing | Switch to All prayers and reset the category to All. |
+| Saved prayers disappeared | Confirm you are using the same browser and site address. Local preview and the published site have separate storage. |
+| Updated content looks old | Reload while connected so the service worker can refresh the cached app. |
+
+## Release and support
+
+The initial release is **v1.0.0**. Screenshots above were captured from the published app on November 13, 2026; dates and the responsive layout will vary on your device. Report issues at [GitHub Issues](https://github.com/awerds/prayer/issues), including your browser, device, and steps to reproduce. Avoid including private personal information.
+
+For local setup, validation, content updates, and Pages deployment, see the [maintenance guide](docs/MAINTAINING.md). For review findings and remaining dependency risks, see [SECURITY.md](SECURITY.md).
