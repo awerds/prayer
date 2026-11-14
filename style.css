@@ -13,3 +13,22 @@ body{background:#142733;color:var(--ink);isolation:isolate}body:before{content:"
 dialog{background:rgba(22,40,52,.94);color:var(--ink);border:1px solid #e9cd9273;border-radius:16px;backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 25px 100px #050b18a0,inset 0 1px #fff2cf26}dialog::backdrop{background:#06142399;backdrop-filter:blur(7px)}.dialog-top button{color:#f6e8c9}.reader-toolbar button{background:#eee0bb1c;color:#f6e4c0;border-color:#e7d2a248}.meaning a{color:#f3d19a}#download-status,#speech-status{color:#d5ddcf}.latin{color:#c4d0cc}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline-color:#ffe3aa}button:disabled{opacity:.45}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.daily-card,.prayer-card,.intention-card,.collection-card,.today-liturgy,.liturgical-day,.guided-step,.text-section,.intro,.sidebar,header{background:#243b49}}
 @media(max-width:760px){.intro{padding:21px}.sidebar{background:#162d3be8}.hero{padding:25px}.section-heading{padding:12px}.section-heading h2{font-size:21px}.contents{padding:12px}.journey-header{padding:20px}.calendar-bar{padding:12px}.today-liturgy{padding:22px}body:before{background-position:center top;background-size:auto 100vh}.library-collections button{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
+/* Fluid rows: every card shares its row's available width, including the last row. */
+.daily-grid,.library-grid,.intention-grid,.collection-grid,.library-collections,.today-lessons,.liturgy-list,.bottom-grid{
+ display:flex;flex-wrap:wrap;align-items:stretch;
+}
+.daily-grid>*,.library-grid>*,.intention-grid>*,.collection-grid>*,.library-collections>*,.today-lessons>*,.liturgy-list>*,.bottom-grid>*{
+ flex:1 1 240px;min-width:0;max-width:100%;overflow-wrap:anywhere;
+}
+.library-collections>*{flex-basis:200px}
+.collection-grid>*,.bottom-grid>*{flex-basis:280px}
+.today-lessons>*{flex-basis:220px}
+.library-grid>.empty{flex-basis:100%}
+.filters>button,.hour-tabs>button{flex:1 1 auto;text-align:center}
+@media(max-width:760px){
+ .daily-grid>*,.library-grid>*,.intention-grid>*,.collection-grid>*,.library-collections>*,.today-lessons>*,.liturgy-list>*,.bottom-grid>*{flex-basis:100%}
+}
+.library-collections{container-type:inline-size}
+.library-collections>*{flex-basis:calc((100% - 12px)/2)}
+@container(min-width:850px){.library-collections>*{flex-basis:calc((100% - 36px)/4)}}
+@media(max-width:760px){.library-collections>*{flex-basis:100%}}
