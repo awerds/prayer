@@ -36,9 +36,15 @@ Open **Prayer library** (the book/list icon). Choose **All prayers**, **Start wi
 
 Select a prayer to open its full text, **Meaning & use**, and source reference. Choose **Save** to add it to **Saved prayers** (the heart icon). Selecting **Saved** again removes it. Close the reader with **×** or Escape.
 
-The library contains 16 private prayers. The six Pietà-style selections are the Memorare, Anima Christi, Prayer Before a Crucifix, Spiritual Communion, Saint Michael prayer, and Salve Regina. This collection is not a complete reproduction of a particular Pietà Prayer Book edition.
+The library contains 31 private prayers, including all fifteen prayers of Saint Bridget. The six Pietà-style selections are the Memorare, Anima Christi, Prayer Before a Crucifix, Spiritual Communion, Saint Michael prayer, and Salve Regina. This collection is not a complete reproduction of a particular Pietà Prayer Book edition.
 
 ![Prayer library](docs/screenshots/library.jpg)
+
+## The fifteen prayers of Saint Bridget
+
+Choose **Saint Bridget** in the prayer library or the matching card on Today. All fifteen prayers are numbered in order and can be searched, saved, or listened to individually. **Pray all fifteen in order** opens a guided sequence; each prayer includes the invocation, Our Father, and Hail Mary. Your place is saved for the current day.
+
+This is the traditional 1874 English version, whose numbering and wording differ from some modern Pietà editions. See [text provenance](docs/SAINT-BRIDGET.md). The collection does not include or endorse associated devotional promises.
 
 ## Choose your voice and reading preferences
 

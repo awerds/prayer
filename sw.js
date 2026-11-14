@@ -1,6 +1,6 @@
-const CACHE='ora-shell-v8';
+const CACHE='ora-shell-v9';
 const DAYS='ora-liturgy-days-v1';
-const FILES=['./','./index.html','./style.css','./app.js','./voice.js','./prayers.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
+const FILES=['./','./index.html','./style.css','./app.js','./voice.js','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()));
 });
