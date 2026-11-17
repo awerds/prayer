@@ -48,11 +48,11 @@ This is the traditional 1874 English version, whose numbering and wording differ
 
 ## Choose your voice and reading preferences
 
-Open **Voice settings** using the music-note button near the date. On wider screens, you can also choose **Reading & voice** in the sidebar. Your first attempt to listen asks you to choose a voice source. Choose one, close settings, and press Listen again.
+Open **Voice settings** using the music-note button near the date. On wider screens, you can also choose **Reading & voice** in the sidebar. Listening uses device speech by default, preferring Google US English when available. You can change the voice source in settings. Previously chosen voices and the optional browser model remain selected.
 
 | Option | How it works |
 | --- | --- |
-| **Use device voices** | No model download. Installed English voices are preferred; the device’s default service may require internet. Choose an available voice in **Reading voice**. |
+| **Use device voices** | No model download. Google US English is preferred when offered by your browser, followed by another US English voice and the device default. Google’s service may require internet. Choose an available voice in **Reading voice**. |
 | **Download higher-quality browser voice** | Downloads the optional Kokoro model, roughly 100 MB plus runtime files. Keep the page open until it reports that the voice is ready. Speech is generated in the browser using a fixed voice. |
 
 Use **Reading pace** to adjust speed from 0.5× to 1.2×. Choose **Comfortable**, **Large**, or **Extra large** under **Prayer text size**. The device voice selector applies to device speech, not the fixed Kokoro voice.
