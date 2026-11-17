@@ -20,3 +20,16 @@ export const prayers=[
 ].map(([id,title,latin,category,summary,text,meaning,source])=>({id,title,latin,category,summary,text,meaning,source}));
 
 for(const prayer of bridgetPrayers){prayers.push({...prayer,text:prayer.text+'\n\nO most gracious Lord Jesus Christ, be propitious to me, a sinner.\n\nOur Father\n'+prayers.find(p=>p.id==='our-father').text+'\n\nHail Mary\n'+prayers.find(p=>p.id==='hail-mary').text})}
+
+// Expand repeated prayers for reading and every speech engine.
+const angelus=prayers.find(p=>p.id==='angelus');
+angelus.text=angelus.text.replaceAll('Hail Mary…',prayers.find(p=>p.id==='hail-mary').text);
+const reviewNotes={
+ 'glory-be':'“Holy Ghost” is traditional English for Holy Spirit. “World without end” means for ever, not a claim about the physical world.',
+ 'sign-cross':'These directions describe the customary Latin Catholic gesture; Eastern Catholics use a different shoulder order. “Holy Ghost” means Holy Spirit.',
+ 'anima-christi':'“Inebriate” is an image of being filled with Christ’s life and love. “Suffer me not” means do not allow me; “malignant enemy” refers to the devil.',
+ 'morning-offering':'“Associates” refers to fellow members of the prayer apostolate in this form of the offering. Several English versions are in use.',
+ 'salve-regina':'“Clement” means merciful; “advocate” means one who intercedes. The final petition and response are customary additions to the antiphon.',
+ 'crucifix':'Psalm 21 in traditional Latin numbering is Psalm 22 in most modern Bibles. The quoted wording follows an older translation tradition.'
+};
+for(const prayer of prayers){if(reviewNotes[prayer.id])prayer.meaning+=' '+reviewNotes[prayer.id]}

@@ -1,4 +1,4 @@
-const CACHE='ora-shell-v11';
+const CACHE='ora-shell-v12';
 const DAYS='ora-liturgy-days-v1';
 const FILES=['./','./index.html','./style.css?v=10','./app.js','./voice.js','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
