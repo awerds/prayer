@@ -132,3 +132,7 @@ Offline speech requires a working installed voice or available browser-model/run
 The initial release is **v1.0.0**. Screenshots above were captured from the published app on November 13, 2026; dates and the responsive layout will vary on your device. Report issues at [GitHub Issues](https://github.com/awerds/prayer/issues), including your browser, device, and steps to reproduce. Avoid including private personal information.
 
 For local setup, validation, content updates, and Pages deployment, see the [maintenance guide](docs/MAINTAINING.md). For review findings and remaining dependency risks, see [SECURITY.md](SECURITY.md).
+
+## Prayer wording and accuracy
+
+Traditional English is retained, with plain-language explanations under **Meaning & use**. Saint Bridget entries show historical context before the text, including corrections where devotional imagery differs from the Gospel accounts. The Angelus includes all three Hail Marys in full. See the [prayer review](docs/PRAYER-REVIEW.md) for sources, findings, and the limits of the translation review.
