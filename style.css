@@ -68,3 +68,20 @@ dialog{background:rgba(22,40,52,.94);color:var(--ink);border:1px solid #e9cd9273
  .companion-stage{width:144px;height:144px;flex-basis:144px}
  .companion-controls{justify-content:center}
 }
+/* Full-width content framing */
+header{padding:0 28px}
+main{max-width:none;width:100%;padding:32px 28px 28px}
+footer{margin:10px 28px 0}
+.journey-header,.guided-step{max-width:none;width:100%}
+#prayer-dialog{width:min(1080px,calc(100vw - 40px))}
+#settings-dialog{width:min(680px,calc(100vw - 32px))}
+.hero p{max-width:520px}
+.collection-card p,.book-intro p{max-width:600px}
+.content-note p,.source-credit p,.how-to-pray p{max-width:960px}
+@media(min-width:1500px){main{padding:36px 34px 32px}}
+@media(max-width:760px){
+ header{padding:0 16px}
+ main{padding:20px 14px}
+ footer{margin:0 14px}
+ #prayer-dialog{width:calc(100vw - 20px)}
+}

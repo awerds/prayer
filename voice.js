@@ -6,9 +6,9 @@ const SAMPLE_RATE=24000;
 const END_TOKEN=10;
 
 export const KITTEN_VOICES=[
+  {key:'otis',name:'Otis',desc:'Deep, resonant (male · default)',persona:'male'},
   {key:'eleanor',name:'Eleanor',desc:'Somber, clear (female)',persona:'female'},
   {key:'edith',name:'Edith',desc:'Warm, gentle (female)',persona:'female'},
-  {key:'otis',name:'Otis',desc:'Deep, resonant (male)',persona:'male'},
   {key:'frank',name:'Frank',desc:'Weathered, steady (male)',persona:'male'}
 ];
 
@@ -279,7 +279,7 @@ async function synthesizeChunk(eng,text,voiceKey,rate,keepStart){
   }
   const fullIds=[0,...ids,END_TOKEN,0];
   const fullChars=['',...chars,'',''];
-  const pack=eng.voices[voiceKey]||eng.voices.eleanor||Object.values(eng.voices)[0];
+  const pack=eng.voices[voiceKey]||eng.voices.otis||Object.values(eng.voices)[0];
   const row=Math.min(fullIds.length-1,Math.floor(pack.length/256)-1);
   const style=new Float32Array(pack.subarray(row*256,(row+1)*256));
 
@@ -347,7 +347,7 @@ export async function browserSpeak(text,rate,status,options={}){
   const eng=await downloadVoice(status);
   if(run!==token)return;
 
-  const voiceKey=options.voice||'eleanor';
+  const voiceKey=options.voice||'otis';
   const voiceObj=KITTEN_VOICES.find(v=>v.key===voiceKey)||KITTEN_VOICES[0];
   const chunks=splitChunks(text);
 
