@@ -39,12 +39,15 @@ const EXTRA_LEXICON={
 const VISEME_MAP={
   m:'mbp',b:'mbp',p:'mbp',
   f:'fv',v:'fv',
+  'θ':'th','ð':'th',
   i:'wide','ɪ':'wide',e:'wide','ɛ':'wide',A:'wide',j:'wide','ᵻ':'wide',
   a:'open','ɑ':'open','ɐ':'open','æ':'open','ʌ':'open','ə':'open','ɜ':'open','ɚ':'open',I:'open',Y:'open',
   o:'round','ɔ':'round','ɒ':'round',u:'round','ʊ':'round',O:'round',W:'round',Q:'round',w:'round',
-  t:'mid',d:'mid',n:'mid',l:'mid',s:'mid',z:'mid','θ':'mid','ð':'mid','ʃ':'mid','ʒ':'mid',
+  t:'mid',d:'mid',n:'mid',l:'mid',s:'mid',z:'mid','ʃ':'mid','ʒ':'mid',
   'ʧ':'mid','ʤ':'mid',k:'mid','ɡ':'mid',g:'mid','ŋ':'mid','ɹ':'mid',r:'mid',h:'mid',T:'mid',S:'mid','ɾ':'mid'
 };
+const PRE_MARKS=new Set(['ˈ','ˌ']);
+const POST_MARKS=new Set(['ː','ʰ','ʲ','̃','ᵊ']);
 
 let engine=null, loading=null, audioCtx=null, activeSource=null, token=0, resumeFn=null;
 
@@ -293,11 +296,11 @@ async function synthesizeChunk(eng,text,voiceKey,rate,keepStart){
 
   let totalDur=0;
   if(rawDur){for(let i=0;i<rawDur.length;i++)totalDur+=Number(rawDur[i])}
-  const spf=Math.max(1,Math.round(rawWav.length/Math.max(totalDur,1)));
-  const lead=keepStart||!rawDur?0:Math.max(0,Number(rawDur[0])-1)*spf;
-  const trail=rawDur?Math.max(0,Number(rawDur[rawDur.length-1])-1)*spf:0;
-  const endIdx=(lead+trail+spf<rawWav.length&&trail)?rawWav.length-trail:rawWav.length;
-  const startIdx=(lead+trail+spf<rawWav.length)?lead:0;
+  const spf=rawWav.length/Math.max(totalDur,1);
+  const lead=keepStart||!rawDur?0:Math.round(Math.max(0,Number(rawDur[0])-1)*spf);
+  const trail=rawDur?Math.round(Math.max(0,Number(rawDur[rawDur.length-1])-1)*spf):0;
+  const endIdx=(lead+trail+Math.ceil(spf)<rawWav.length&&trail)?rawWav.length-trail:rawWav.length;
+  const startIdx=(lead+trail+Math.ceil(spf)<rawWav.length)?lead:0;
 
   const len=Math.max(0,endIdx-startIdx);
   const wav=new Float32Array(len);
@@ -314,12 +317,21 @@ async function synthesizeChunk(eng,text,voiceKey,rate,keepStart){
 
   const visemeCues=[];
   if(rawDur){
+    const n=Math.min(rawDur.length,fullChars.length);
+    const resolved=new Array(n).fill('rest');
+    for(let i=0;i<n;i++){
+      const ch=fullChars[i];
+      if(VISEME_MAP[ch])resolved[i]=VISEME_MAP[ch];
+      else if(POST_MARKS.has(ch)&&i>0)resolved[i]=resolved[i-1];
+    }
+    for(let i=n-2;i>=0;i--){
+      if(PRE_MARKS.has(fullChars[i]))resolved[i]=resolved[i+1];
+    }
     let samplePos=0;
-    for(let i=0;i<rawDur.length&&i<fullChars.length;i++){
+    for(let i=0;i<n;i++){
       const durSamples=Number(rawDur[i])*spf;
       const tSec=Math.max(0,(samplePos-startIdx)/SAMPLE_RATE);
-      const ch=fullChars[i];
-      const v=VISEME_MAP[ch]||'rest';
+      const v=resolved[i];
       if(!visemeCues.length||visemeCues[visemeCues.length-1].v!==v){
         visemeCues.push({t:tSec,v});
       }
