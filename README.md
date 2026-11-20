@@ -53,7 +53,7 @@ Open **Voice settings** using the music-note button near the date. On wider scre
 | Option | How it works |
 | --- | --- |
 | **Use device voices** | No model download. Google US English is preferred when offered by your browser, followed by another US English voice and the device default. Google’s service may require internet. Choose an available voice in **Reading voice**. |
-| **Download KittenTTS 2 Pico** | Downloads the lightweight KittenTTS 2 Pico neural voice (~13 MB total: 8 MB int8 ONNX model, four voices, and lexicon). Runs locally in your browser with synchronized lip movement on the animated companion portrait. Choose **Eleanor**, **Edith**, **Otis**, or **Frank** under **KittenTTS Pico voice**. |
+| **Download KittenTTS 2 Pico int4** | Downloads the lightweight KittenTTS 2 Pico int4 neural voice (~9 MB total: 4 MB int4 ONNX model, four voices, and lexicon, with automatic int8 fallback). Runs locally in your browser with synchronized lip movement on the animated companion portrait. Defaults to **Otis**; switch between **Otis**, **Eleanor**, **Edith**, or **Frank** under **KittenTTS Pico voice**. |
 
 Use **Reading pace** to adjust speed from 0.5× to 1.2×. Choose **Comfortable**, **Large**, or **Extra large** under **Prayer text size**. The **Hide portrait** and **Pause motion** controls beside the companion portrait let you switch to text-only reading or still imagery at any time.
 

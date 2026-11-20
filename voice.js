@@ -1,7 +1,7 @@
 const HF_BASE='https://huggingface.co/KittenML/kitten-tts-2-pico/resolve/main/';
-const ORT_VER='1.21.0';
+const ORT_VER='1.22.0';
 const ORT_DIST=`https://cdn.jsdelivr.net/npm/onnxruntime-web@${ORT_VER}/dist/`;
-const MODEL_CACHE='oravigil-kitten-pico-v1';
+const MODEL_CACHE='oravigil-kitten-pico-int4-v1';
 const SAMPLE_RATE=24000;
 const END_TOKEN=10;
 
@@ -244,17 +244,29 @@ export async function downloadVoice(status){
       const cmu=JSON.parse(dec.decode(cmuBuf));
       const voices=parseNpzFloat32(voicesBuf);
 
-      const modelBuf=await fetchCached('kitten_tts_2_pico_en.onnx',(loaded,total)=>{
-        const pct=total?Math.min(100,Math.round(loaded/total*100)):0;
-        setStatus(total?`Downloading KittenTTS 2 Pico model · ${pct}% (8 MB)`:'Downloading KittenTTS 2 Pico model (8 MB)…');
-      });
-
-      setStatus('Initializing KittenTTS 2 Pico on this device…');
-      const session=await ort.InferenceSession.create(new Uint8Array(modelBuf),{
-        executionProviders:['wasm']
-      });
+      let session, format='int4 (4 MB)';
+      try{
+        const modelBuf=await fetchCached('kitten_tts_2_pico_en_int4.onnx',(loaded,total)=>{
+          const pct=total?Math.min(100,Math.round(loaded/total*100)):0;
+          setStatus(total?`Downloading KittenTTS 2 Pico int4 · ${pct}% (4 MB)`:'Downloading KittenTTS 2 Pico int4 (4 MB)…');
+        });
+        setStatus('Initializing KittenTTS 2 Pico int4 on this device…');
+        session=await ort.InferenceSession.create(new Uint8Array(modelBuf),{
+          executionProviders:['wasm']
+        });
+      }catch{
+        format='int8 (8 MB)';
+        const modelBuf=await fetchCached('kitten_tts_2_pico_en.onnx',(loaded,total)=>{
+          const pct=total?Math.min(100,Math.round(loaded/total*100)):0;
+          setStatus(total?`Downloading KittenTTS 2 Pico fallback · ${pct}% (8 MB)`:'Downloading KittenTTS 2 Pico fallback (8 MB)…');
+        });
+        setStatus('Initializing KittenTTS 2 Pico on this device…');
+        session=await ort.InferenceSession.create(new Uint8Array(modelBuf),{
+          executionProviders:['wasm']
+        });
+      }
       engine={ort,session,vocab,cmu,voices};
-      setStatus('KittenTTS 2 Pico ready (~13 MB cached). Speech runs locally on this device.');
+      setStatus(`KittenTTS 2 Pico ${format} ready & cached. Speech runs locally on this device.`);
       return engine;
     })().catch(err=>{
       loading=null;
