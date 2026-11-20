@@ -32,3 +32,39 @@ dialog{background:rgba(22,40,52,.94);color:var(--ink);border:1px solid #e9cd9273
 .library-collections>*{flex-basis:calc((100% - 12px)/2)}
 @container(min-width:850px){.library-collections>*{flex-basis:calc((100% - 36px)/4)}}
 @media(max-width:760px){.library-collections>*{flex-basis:100%}}
+/* Animated sanctuary prayer companion */
+.companion-dock{margin:16px 0 6px}
+.companion-card{display:flex;align-items:center;gap:18px;padding:14px 16px;background:rgba(16,33,44,.72);border:1px solid var(--line);border-radius:12px;transition:border-color .25s ease}
+.companion-card[data-state="speaking"]{border-color:#e8c88f99}
+.companion-card[data-state="listening"]{border-color:#a5c79e88}
+.companion-card[data-hidden="true"]{padding:10px 14px;gap:12px}
+.companion-card[data-hidden="true"] .companion-stage{display:none}
+.companion-stage{width:96px;height:96px;flex:0 0 96px;display:grid;place-items:center}
+.companion-svg{width:100%;height:100%;display:block;overflow:visible}
+.companion-meta{min-width:0;flex:1}
+.companion-voice{color:var(--gold);margin-bottom:4px}
+.companion-detail{margin:0;font-size:12px;color:#d1d8d2}
+.companion-controls{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
+.companion-controls .subtle-button{font-size:10px;color:#e6d3ad;padding:2px 0}
+.companion-card[data-persona="female"] .persona-male{display:none}
+.companion-card[data-persona="male"] .persona-female{display:none}
+.companion-head,.companion-halo,.companion-brows,.companion-eyes,.companion-mouth{transform-box:fill-box;transform-origin:center}
+.companion-head{transition:transform .14s cubic-bezier(.22,.61,.36,1)}
+.companion-halo{transition:transform .12s ease-out,opacity .18s ease-out}
+.companion-brows{transition:transform .14s ease-out}
+.companion-mouth{transition:transform .08s ease-out}
+.companion-mouth .viseme{opacity:0;transition:opacity .055s linear}
+.companion-eyes{transition:transform .09s ease-in-out}
+.companion-eyes.blinking{transform:scaleY(0.08)}
+.companion-ring{transform-box:fill-box;transform-origin:center}
+@keyframes companion-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
+@keyframes companion-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:no-preference){
+ .companion-card[data-motion="on"][data-state="idle"] .companion-head{animation:companion-breathe 5.5s ease-in-out infinite}
+ .companion-card[data-motion="on"][data-state="speaking"] .companion-ring{animation:companion-orbit 28s linear infinite}
+ .companion-card[data-motion="on"][data-state="listening"] .companion-ring{animation:companion-orbit 48s linear infinite}
+}
+@media(max-width:760px){
+ .companion-stage{width:76px;height:76px;flex-basis:76px}
+ .companion-card{gap:14px;padding:12px}
+}

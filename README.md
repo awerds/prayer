@@ -53,9 +53,9 @@ Open **Voice settings** using the music-note button near the date. On wider scre
 | Option | How it works |
 | --- | --- |
 | **Use device voices** | No model download. Google US English is preferred when offered by your browser, followed by another US English voice and the device default. Google’s service may require internet. Choose an available voice in **Reading voice**. |
-| **Download higher-quality browser voice** | Downloads the optional Kokoro model, roughly 100 MB plus runtime files. Keep the page open until it reports that the voice is ready. Speech is generated in the browser using a fixed voice. |
+| **Download KittenTTS 2 Pico** | Downloads the lightweight KittenTTS 2 Pico neural voice (~13 MB total: 8 MB int8 ONNX model, four voices, and lexicon). Runs locally in your browser with synchronized lip movement on the animated companion portrait. Choose **Eleanor**, **Edith**, **Otis**, or **Frank** under **KittenTTS Pico voice**. |
 
-Use **Reading pace** to adjust speed from 0.5× to 1.2×. Choose **Comfortable**, **Large**, or **Extra large** under **Prayer text size**. The device voice selector applies to device speech, not the fixed Kokoro voice.
+Use **Reading pace** to adjust speed from 0.5× to 1.2×. Choose **Comfortable**, **Large**, or **Extra large** under **Prayer text size**. The **Hide portrait** and **Pause motion** controls beside the companion portrait let you switch to text-only reading or still imagery at any time.
 
 Browser voice files come from third-party hosting and are cached where supported. Browsers can clear that cache. A failed browser speech attempt falls back to device speech; a failed download offers a retry or device voices. Browser-model playback has not yet been verified end to end on every supported device.
 

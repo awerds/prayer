@@ -18,6 +18,6 @@ JavaScript syntax, lesson-view checks, and complete 730-day calendar validation 
 
 ## Remaining limitations
 
-The optional Kokoro voice loads a versioned JavaScript package from esm.sh and model/runtime assets from external providers. Those providers and transitive dependencies remain supply-chain trust dependencies; the browser TTS download has not received a full dependency audit or end-to-end production playback test. Device speech may use the operating system's network service. Favorites/preferences remain in browser storage and should not be treated as encrypted confidential storage.
+The optional KittenTTS 2 Pico browser voice loads `onnxruntime-web` from jsDelivr (using `blob:` script/worker glue for WASM) and the quantized ONNX model, voice embeddings, and Misaki lexicon from Hugging Face. Those providers remain supply-chain trust dependencies. Device speech may use the operating system's network service. Favorites/preferences remain in browser storage and should not be treated as encrypted confidential storage.
 
 GitHub Pages does not provide arbitrary response-header configuration. The CSP is supplied in HTML; frame-ancestors cannot be enforced with a meta policy. No account, credentials, private user content, backend, or payment flow is present.

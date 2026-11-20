@@ -23,12 +23,14 @@ jobs:
           python3 scripts/check_liturgy.py
           node --check app.js
           node --check liturgy.js
+          node --check voice.js
+          node --check companion.js
           node --check sw.js
           node scripts/check_reader.mjs
       - name: Prepare public files
         run: |
           mkdir -p public
-          cp index.html app.js liturgy.js prayers.js bridget.js voice.js style.css sw.js manifest.webmanifest CNAME public/
+          cp index.html app.js liturgy.js prayers.js bridget.js voice.js companion.js style.css sw.js manifest.webmanifest CNAME public/
           cp -R assets data public/
           touch public/.nojekyll
       - uses: actions/configure-pages@v5
