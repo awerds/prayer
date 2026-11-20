@@ -1,10 +1,10 @@
-# Ora — User manual
+# Oravigil — User manual
 
-**[Open Ora](https://awerds.github.io/prayer/)** · [Releases](https://github.com/awerds/prayer/releases) · [Security review](SECURITY.md) · [Maintenance guide](docs/MAINTAINING.md)
+**[Open Oravigil](https://oravigil.com/)** · [Releases](https://github.com/awerds/prayer/releases) · [Security review](SECURITY.md) · [Maintenance guide](docs/MAINTAINING.md)
 
-Ora is a traditional Catholic prayer companion with guided prayer, a searchable treasury, and the daily Mass and Divine Office. Its stained-glass background and frosted reading panels provide a quiet place to read or listen. No account is required.
+Oravigil is a traditional Catholic prayer companion with guided prayer, a searchable treasury, and the daily Mass and Divine Office. Its stained-glass background and frosted reading panels provide a quiet place to read or listen. No account is required.
 
-![Ora home screen](docs/screenshots/today.jpg)
+![Oravigil home screen](docs/screenshots/today.jpg)
 
 ## Start your first prayer
 
@@ -111,7 +111,7 @@ Private devotions and editorial guidance are distinct from official liturgical t
 
 ## Offline use and saved information
 
-Open Ora while connected before relying on it offline. The application and private prayer library are cached; each liturgical day is cached when opened. Open the dates you plan to use beforehand. The entire two-year calendar is not downloaded automatically.
+Open Oravigil while connected before relying on it offline. The application and private prayer library are cached; each liturgical day is cached when opened. Open the dates you plan to use beforehand. The entire two-year calendar is not downloaded automatically.
 
 Offline speech requires a working installed voice or available browser-model/runtime files. The optional download does not guarantee offline operation on every browser. Saved prayers, preferences, and guided progress stay in the current browser; they do not sync across devices. Clearing site data or using a private browsing session can remove them. No microphone access is needed.
 

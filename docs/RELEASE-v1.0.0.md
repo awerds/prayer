@@ -2,7 +2,7 @@
 
 The first published release of Ora, a static traditional Catholic prayer companion.
 
-**[Open the app](https://awerds.github.io/prayer/)** · **[User manual](https://github.com/awerds/prayer#readme)**
+**[Open the app](https://oravigil.com/)** · **[User manual](https://github.com/awerds/prayer#readme)**
 
 ## Included
 

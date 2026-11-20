@@ -1,4 +1,4 @@
-# Ora — Maintenance guide
+# Oravigil — Maintenance guide
 
 A static traditional Catholic prayer app with a guided starting point, a prayer treasury, and the daily Roman liturgy. No package install, backend, analytics, account, or API key.
 
@@ -20,7 +20,7 @@ The application files are about 65 KB before compression. The calendar index is 
 
 ## GitHub Pages
 
-Push this repository to GitHub on `main`. Pages deploys from the root of the `gh-pages` branch. Source lives on `main`; copy only the public app files, assets, and data into `gh-pages` when updating. An optional Actions workflow template is provided at `scripts/pages-workflow.yml.example` for credentials with workflow permission. All asset paths are relative, so GitHub project Pages subdirectories work. Hash routes require no server rewriting. Repository: https://github.com/awerds/prayer. GitHub Pages publication uses the gh-pages branch. See ../SECURITY.md for the security review and remaining limitations.
+Push this repository to GitHub on `main`. Pages deploys from the root of the `gh-pages` branch and serves the custom domain `oravigil.com` via the root `CNAME` file. Source lives on `main`; copy only the public app files, `CNAME`, assets, and data into `gh-pages` when updating. An optional Actions workflow template is provided at `scripts/pages-workflow.yml.example` for credentials with workflow permission. All asset paths are relative, so both the custom domain and GitHub project Pages subdirectories work. Hash routes require no server rewriting. Repository: https://github.com/awerds/prayer. Live site: https://oravigil.com/. GitHub Pages publication uses the `gh-pages` branch. See ../SECURITY.md for the security review and remaining limitations.
 
 Run checks locally:
 

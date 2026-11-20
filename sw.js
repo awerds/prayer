@@ -1,11 +1,11 @@
-const CACHE='ora-shell-v12';
-const DAYS='ora-liturgy-days-v1';
-const FILES=['./','./index.html','./style.css?v=10','./app.js','./voice.js','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
+const CACHE='oravigil-shell-v13';
+const DAYS='oravigil-liturgy-days-v1';
+const FILES=['./','./index.html','./style.css?v=11','./app.js','./voice.js','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>(key.startsWith('ora-shell-')||/^ora-v\d+$/.test(key))&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
+  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>(key.startsWith('oravigil-shell-')||key.startsWith('ora-shell-')||/^ora-v\d+$/.test(key))&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
 });
 self.addEventListener('fetch',event=>{
   const url=new URL(event.request.url);
