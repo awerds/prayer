@@ -5,12 +5,12 @@ const writePref=v=>{try{localStorage.setItem(PREF_KEY,JSON.stringify(v))}catch{}
 const POSES={
   rest: {open:0.00,width:1.00,round:0.00,bite:0.00,teeth:0.00,press:0.0},
   mbp:  {open:0.00,width:0.90,round:0.00,bite:0.00,teeth:0.00,press:1.0},
-  fv:   {open:0.18,width:0.96,round:0.00,bite:1.00,teeth:0.90,press:0.0},
-  th:   {open:0.30,width:0.98,round:0.00,bite:0.35,teeth:0.80,press:0.0},
-  wide: {open:0.38,width:1.22,round:0.00,bite:0.00,teeth:0.70,press:0.0},
-  mid:  {open:0.46,width:1.00,round:0.15,bite:0.00,teeth:0.50,press:0.0},
-  open: {open:0.94,width:0.94,round:0.18,bite:0.00,teeth:0.55,press:0.0},
-  round:{open:0.68,width:0.54,round:1.00,bite:0.00,teeth:0.10,press:0.0}
+  fv:   {open:0.16,width:0.95,round:0.00,bite:1.00,teeth:0.90,press:0.0},
+  th:   {open:0.26,width:0.98,round:0.00,bite:0.35,teeth:0.80,press:0.0},
+  wide: {open:0.34,width:1.18,round:0.00,bite:0.00,teeth:0.65,press:0.0},
+  mid:  {open:0.42,width:1.00,round:0.15,bite:0.00,teeth:0.48,press:0.0},
+  open: {open:0.82,width:0.94,round:0.16,bite:0.00,teeth:0.50,press:0.0},
+  round:{open:0.60,width:0.56,round:1.00,bite:0.00,teeth:0.10,press:0.0}
 };
 
 const state={
@@ -80,9 +80,9 @@ function svgMarkup(uid){
       </g>
       <ellipse cx="47" cy="88" rx="6" ry="10.5" fill="#d9bc90"/>
       <ellipse cx="133" cy="88" rx="6" ry="10.5" fill="#d9bc90"/>
-      <path class="face-base" d="M49 77 C49 48 67 38 90 38 C113 38 131 48 131 77 C131 111 114 137 90 138 C66 137 49 111 49 77 Z" fill="url(#skin-${uid})"/>
+      <path class="face-base" d="M49 77 C49 48 67 38 90 38 C113 38 131 48 131 77 C131 112 115 138 90 139 C65 138 49 112 49 77 Z" fill="url(#skin-${uid})"/>
       <g class="persona-male">
-        <path class="beard-shape" d="M52 93 C55 122 70 138 90 139 C110 138 125 122 128 93 C122 110 110 120 90 120 C70 120 58 110 52 93 Z" fill="#3b2e27" fill-opacity="0.72"/>
+        <path class="beard-shape" d="M52 94 C55 123 70 139 90 140 C110 139 125 123 128 94 C122 113 110 123 90 123 C70 123 58 113 52 94 Z" fill="#3b2e27" fill-opacity="0.72"/>
       </g>
       <path d="M49 77 C49 52 65 42 90 42 C115 42 131 52 131 77 C122 59 108 52 90 52 C72 52 58 59 49 77 Z" fill="#3a2c24" fill-opacity="0.88"/>
       <g class="companion-brows">
@@ -105,15 +105,15 @@ function svgMarkup(uid){
           <path d="M99.5 82 Q108.5 75.5 117.5 82" fill="none" stroke="#30221a" stroke-width="2" stroke-linecap="round"/>
         </g>
       </g>
-      <path d="M90 80 L87.5 98 Q90 101 93.5 98" fill="none" stroke="#b49164" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M90 80 L87.8 95.5 Q90 98 93 95.5" fill="none" stroke="#b49164" stroke-width="1.7" stroke-linecap="round"/>
       <g class="companion-mouth">
-        <path class="mouth-cavity" d="M77 113 Q90 113 103 113 Q90 113 77 113 Z" fill="#462221"/>
-        <path class="mouth-tongue" d="M82 117 Q90 115 98 117 Q90 120 82 117 Z" fill="#8f4c48" opacity="0"/>
-        <path class="mouth-teeth" d="M81 112.5 Q90 113.5 99 112.5 L98 115 Q90 115.6 82 115 Z" fill="#f8f1e4" opacity="0"/>
-        <path class="lip-upper" d="M77 113 Q84 110.5 90 112 Q96 110.5 103 113" fill="none" stroke="#8d5349" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
-        <path class="lip-lower" d="M78 113.5 Q90 116.5 102 113.5" fill="none" stroke="#a6695d" stroke-width="2.1" stroke-linecap="round"/>
+        <path class="mouth-cavity" d="M79 109 Q90 109 101 109 Q90 109 79 109 Z" fill="#462221"/>
+        <path class="mouth-tongue" d="M84 113 Q90 111.5 96 113 Q90 115 84 113 Z" fill="#8f4c48" opacity="0"/>
+        <path class="mouth-teeth" d="M82 108.5 Q90 109.2 98 108.5 L97 110.5 Q90 111 83 110.5 Z" fill="#f8f1e4" opacity="0"/>
+        <path class="lip-upper" d="M79 109 Q84.5 106.8 90 108.2 Q95.5 106.8 101 109" fill="none" stroke="#8d5349" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="lip-lower" d="M80 109.5 Q90 112.2 100 109.5" fill="none" stroke="#a6695d" stroke-width="2" stroke-linecap="round"/>
       </g>
-      <path class="chin-line" d="M82 127 Q90 129.5 98 127" fill="none" stroke="#b9966b" stroke-opacity="0.48" stroke-width="1.4" stroke-linecap="round"/>
+      <path class="chin-line" d="M83 126.5 Q90 128.5 97 126.5" fill="none" stroke="#b9966b" stroke-opacity="0.45" stroke-width="1.3" stroke-linecap="round"/>
     </g>
   </g>
   <circle cx="90" cy="90" r="84.5" fill="none" stroke="#e8c88f" stroke-opacity="0.72" stroke-width="1.8"/>
@@ -124,14 +124,16 @@ function svgMarkup(uid){
 let uidSeq=0;
 
 function applyMouthGeometry(card,pose){
-  const cx=90, cy=113;
-  const open=Math.max(0,Math.min(1.15,pose.open));
-  const halfW=13.2*pose.width;
-  const topY=cy-open*2.2-(pose.press*0.3);
-  const botY=cy+open*11.8+(pose.bite*1.2);
+  const cx=90, cy=109;
+  const open=Math.max(0,Math.min(0.92,pose.open));
+  const halfW=11.4*pose.width;
+  const topY=cy-open*1.4-(pose.press*0.25);
+  const cornerY=cy+open*0.6+(pose.round*0.8)-(pose.width>1.08?0.8:0);
+  const botCtrlY=cy+open*13.0+(pose.bite*0.9);
+  const cavVisualTop=(cornerY+(topY-open*0.8))/2;
+  const cavVisualBot=(cornerY+botCtrlY)/2;
   const leftX=cx-halfW;
   const rightX=cx+halfW;
-  const cornerY=cy+open*1.0+(pose.round*1.4)-(pose.width>1.08?1.1:0);
   const ctrlX=halfW*0.56;
 
   const cavity=card.querySelector('.mouth-cavity');
@@ -143,7 +145,7 @@ function applyMouthGeometry(card,pose){
 
   if(cavity){
     if(open>0.04){
-      const d=`M${leftX.toFixed(1)} ${cornerY.toFixed(1)} Q${cx} ${(topY-open*1.2).toFixed(1)} ${rightX.toFixed(1)} ${cornerY.toFixed(1)} Q${cx} ${(botY+open*1.8).toFixed(1)} ${leftX.toFixed(1)} ${cornerY.toFixed(1)} Z`;
+      const d=`M${leftX.toFixed(1)} ${cornerY.toFixed(1)} Q${cx} ${(topY-open*0.8).toFixed(1)} ${rightX.toFixed(1)} ${cornerY.toFixed(1)} Q${cx} ${botCtrlY.toFixed(1)} ${leftX.toFixed(1)} ${cornerY.toFixed(1)} Z`;
       cavity.setAttribute('d',d);
       cavity.style.opacity='1';
     }else{
@@ -153,22 +155,26 @@ function applyMouthGeometry(card,pose){
   if(teeth){
     const showTeeth=(pose.teeth>0.05&&(open>0.12||pose.bite>0.3))?Math.min(1,pose.teeth*(pose.bite>0.3?1:Math.min(1,open*2.4))):0;
     if(showTeeth>0.05){
-      const tw=halfW*0.72;
-      const tTop=topY+0.6;
-      const tBot=Math.min(botY-0.8,tTop+2.6+pose.bite*1.0);
-      const td=`M${(cx-tw).toFixed(1)} ${(tTop+0.4).toFixed(1)} Q${cx} ${tTop.toFixed(1)} ${(cx+tw).toFixed(1)} ${(tTop+0.4).toFixed(1)} L${(cx+tw*0.9).toFixed(1)} ${tBot.toFixed(1)} Q${cx} ${(tBot+0.6).toFixed(1)} ${(cx-tw*0.9).toFixed(1)} ${tBot.toFixed(1)} Z`;
-      teeth.setAttribute('d',td);
-      teeth.style.opacity=showTeeth.toFixed(2);
+      const tw=halfW*0.66;
+      const tTop=cavVisualTop+0.2;
+      const tBot=Math.min(cavVisualBot-0.6,tTop+2.1+pose.bite*0.8);
+      if(tBot>tTop+0.4){
+        const td=`M${(cx-tw).toFixed(1)} ${(tTop+0.3).toFixed(1)} Q${cx} ${tTop.toFixed(1)} ${(cx+tw).toFixed(1)} ${(tTop+0.3).toFixed(1)} L${(cx+tw*0.88).toFixed(1)} ${tBot.toFixed(1)} Q${cx} ${(tBot+0.4).toFixed(1)} ${(cx-tw*0.88).toFixed(1)} ${tBot.toFixed(1)} Z`;
+        teeth.setAttribute('d',td);
+        teeth.style.opacity=showTeeth.toFixed(2);
+      }else{
+        teeth.style.opacity='0';
+      }
     }else{
       teeth.style.opacity='0';
     }
   }
   if(tongue){
-    const showTongue=open>0.42?Math.min(0.95,(open-0.42)*1.8):0;
+    const showTongue=open>0.44?Math.min(0.88,(open-0.44)*1.9):0;
     if(showTongue>0.05){
-      const tw=halfW*0.56;
-      const ty=botY-1.6;
-      const td=`M${(cx-tw).toFixed(1)} ${ty.toFixed(1)} Q${cx} ${(ty-open*3.4).toFixed(1)} ${(cx+tw).toFixed(1)} ${ty.toFixed(1)} Q${cx} ${(botY+0.8).toFixed(1)} ${(cx-tw).toFixed(1)} ${ty.toFixed(1)} Z`;
+      const tw=halfW*0.5;
+      const ty=cavVisualBot-0.7;
+      const td=`M${(cx-tw).toFixed(1)} ${ty.toFixed(1)} Q${cx} ${(ty-open*2.1).toFixed(1)} ${(cx+tw).toFixed(1)} ${ty.toFixed(1)} Q${cx} ${(cavVisualBot+0.4).toFixed(1)} ${(cx-tw).toFixed(1)} ${ty.toFixed(1)} Z`;
       tongue.setAttribute('d',td);
       tongue.style.opacity=showTongue.toFixed(2);
     }else{
@@ -176,19 +182,19 @@ function applyMouthGeometry(card,pose){
     }
   }
   if(lipUp){
-    const bow=pose.round>0.5?topY-1.4:topY-2.2;
-    const midDip=topY-0.4;
+    const bow=pose.round>0.5?topY-1.1:topY-1.7;
+    const midDip=topY-0.3;
     const d=`M${leftX.toFixed(1)} ${cornerY.toFixed(1)} Q${(cx-ctrlX).toFixed(1)} ${bow.toFixed(1)} ${cx} ${midDip.toFixed(1)} Q${(cx+ctrlX).toFixed(1)} ${bow.toFixed(1)} ${rightX.toFixed(1)} ${cornerY.toFixed(1)}`;
     lipUp.setAttribute('d',d);
-    lipUp.setAttribute('stroke-width',(2.3+pose.press*0.65).toFixed(2));
+    lipUp.setAttribute('stroke-width',(2.2+pose.press*0.55).toFixed(2));
   }
   if(lipLo){
-    const loEdge=botY+1.6-(pose.bite*1.8);
-    const d=`M${(leftX+0.8).toFixed(1)} ${(cornerY+0.4).toFixed(1)} Q${cx} ${loEdge.toFixed(1)} ${(rightX-0.8).toFixed(1)} ${(cornerY+0.4).toFixed(1)}`;
+    const loCtrlY=botCtrlY+1.8-(pose.bite*1.4);
+    const d=`M${(leftX+0.8).toFixed(1)} ${(cornerY+0.3).toFixed(1)} Q${cx} ${loCtrlY.toFixed(1)} ${(rightX-0.8).toFixed(1)} ${(cornerY+0.3).toFixed(1)}`;
     lipLo.setAttribute('d',d);
   }
   if(chin){
-    chin.style.transform=`translateY(${(open*2.8).toFixed(2)}px)`;
+    chin.style.transform=`translateY(${(open*1.6).toFixed(2)}px)`;
   }
 }
 
@@ -266,7 +272,7 @@ function stepPoseToward(targetName,energyBoost,dtMs){
   const targetOpen=tPose.press>0.5||tPose.bite>0.5
     ?tPose.open
     :tPose.open>0.05
-      ?Math.max(0.14,tPose.open*(0.62+energyBoost*0.62))
+      ?Math.min(0.92,Math.max(0.14,tPose.open*(0.65+energyBoost*0.45)))
       :0;
   const openRate=targetOpen>state.cur.open?0.52:0.32;
   const kOpen=1-Math.pow(1-openRate,norm);
