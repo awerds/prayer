@@ -9,8 +9,8 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 let current=null, filter='All', collection='All prayers', query='', speaking=false, speechRun=0, activeSpeech=null;
 let saved=read('ora-saved',[]), prefs=read('ora-prefs',{rate:.85,size:20,voice:''});
 if(!Array.isArray(saved))saved=[];saved=saved.filter(id=>typeof id==='string'&&prayers.some(p=>p.id===id));if(!prefs||typeof prefs!=='object'||Array.isArray(prefs))prefs={rate:.85,size:20,voice:''};prefs.rate=Math.max(.5,Math.min(1.2,Number(prefs.rate)||.85));prefs.size=[20,24,28].includes(Number(prefs.size))?Number(prefs.size):20;
-if(!['device','browser'].includes(prefs.engine))prefs.engine='device';
-if(!KITTEN_VOICES.some(v=>v.key===prefs.kittenVoice))prefs.kittenVoice='eleanor';
+if(!['device','browser'].includes(prefs.engine))prefs.engine='browser';
+if(!KITTEN_VOICES.some(v=>v.key===prefs.kittenVoice))prefs.kittenVoice='otis';
 const today=new Date(), todayKey=isoDate(today);
 const liturgyState={date:todayKey,hour:'Missa',readingsOnly:true,lesson:null};
 const pietaIds=['memorare','anima-christi','crucifix','spiritual-communion','st-michael','salve-regina'];
