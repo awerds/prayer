@@ -1,6 +1,6 @@
-const CACHE='oravigil-shell-v23';
+const CACHE='oravigil-shell-v24';
 const DAYS='oravigil-liturgy-days-v1';
-const FILES=['./','./index.html','./style.css?v=19','./app.js?v=4','./voice.js?v=4','./companion.js?v=4','./rosary.js?v=4','./reminders.js?v=4','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
+const FILES=['./','./index.html','./style.css?v=19','./app.js?v=5','./voice.js?v=5','./companion.js?v=5','./rosary.js?v=5','./reminders.js?v=5','./prayers.js','./bridget.js','./liturgy.js','./data/liturgy/index.json','./assets/cross.svg','./assets/stained-glass.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting()));
 });

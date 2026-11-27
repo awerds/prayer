@@ -67,42 +67,42 @@ function svgMarkup(uid){
       <path d="M18 186 C26 150 54 136 90 136 C126 136 154 150 162 186 Z" fill="url(#robe-${uid})" stroke="#e8c88f" stroke-opacity="0.38" stroke-width="1.2"/>
       <path d="M68 139 L90 162 L112 139" fill="none" stroke="#e8c88f" stroke-opacity="0.72" stroke-width="1.8"/>
       <path d="M90 162 V175 M85 168 H95" stroke="#e8c88f" stroke-opacity="0.68" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M76 124 V143 C76 149 104 149 104 143 V124 Z" fill="#d9bc90"/>
-      <path d="M76 126 Q90 138 104 126 V134 Q90 144 76 134 Z" fill="#b89367" fill-opacity="0.35"/>
+      <path d="M78 124 V143 C78 148 102 148 102 143 V124 Z" fill="#d9bc90"/>
+      <path d="M78 126 Q90 137 102 126 V134 Q90 143 78 134 Z" fill="#b89367" fill-opacity="0.35"/>
     </g>
     <g class="companion-head">
       <g class="persona-female">
-        <path d="M28 164 C26 94 40 24 90 22 C140 24 154 94 152 164 C136 152 124 142 121 124 C128 98 128 54 90 46 C52 54 52 98 59 124 C56 142 44 152 28 164 Z" fill="#1a3444" stroke="#e8c88f" stroke-opacity="0.48" stroke-width="1.4"/>
-        <path d="M46 78 C46 42 66 33 90 33 C114 33 134 42 134 78 C126 56 110 47 90 47 C70 47 54 56 46 78 Z" fill="#3a2c24"/>
+        <path d="M36 164 C35 95 48 24 90 22 C132 24 145 95 144 164 C130 152 120 142 117 125 C122 98 122 52 90 44 C58 52 58 98 63 125 C60 142 50 152 36 164 Z" fill="#1a3444" stroke="#e8c88f" stroke-opacity="0.48" stroke-width="1.4"/>
+        <path d="M53 76 C53 41 69 32 90 32 C111 32 127 41 127 76 C120 55 107 46 90 46 C73 46 60 55 53 76 Z" fill="#3a2c24"/>
       </g>
       <g class="persona-male">
-        <path d="M45 80 C44 43 63 27 90 27 C117 27 136 43 135 80 C128 56 114 44 90 44 C66 44 52 56 45 80 Z" fill="#342822"/>
+        <path d="M52 78 C51 42 67 27 90 27 C113 27 129 42 128 78 C122 55 110 43 90 43 C70 43 58 55 52 78 Z" fill="#342822"/>
       </g>
-      <ellipse cx="47" cy="88" rx="6" ry="10.5" fill="#d9bc90"/>
-      <ellipse cx="133" cy="88" rx="6" ry="10.5" fill="#d9bc90"/>
-      <path class="face-base" d="M49 77 C49 48 67 38 90 38 C113 38 131 48 131 77 C131 112 115 138 90 139 C65 138 49 112 49 77 Z" fill="url(#skin-${uid})"/>
+      <ellipse cx="54.5" cy="87" rx="4.6" ry="9.5" fill="#d9bc90"/>
+      <ellipse cx="125.5" cy="87" rx="4.6" ry="9.5" fill="#d9bc90"/>
+      <path class="face-base" d="M56 76 C56 46 70 36 90 36 C110 36 124 46 124 76 C124 98 117 119 106 131 C100 137 95 140 90 140 C85 140 80 137 74 131 C63 119 56 98 56 76 Z" fill="url(#skin-${uid})"/>
       <g class="persona-male">
-        <path class="beard-shape" d="M52 94 C55 123 70 139 90 140 C110 139 125 123 128 94 C122 113 110 123 90 123 C70 123 58 113 52 94 Z" fill="#3b2e27" fill-opacity="0.72"/>
+        <path class="beard-shape" d="M58 95 C61 119 73 139 90 140 C107 139 119 119 122 95 C116 112 106 122 90 122 C74 122 64 112 58 95 Z" fill="#3b2e27" fill-opacity="0.72"/>
       </g>
-      <path d="M49 77 C49 52 65 42 90 42 C115 42 131 52 131 77 C122 59 108 52 90 52 C72 52 58 59 49 77 Z" fill="#3a2c24" fill-opacity="0.88"/>
+      <path d="M56 76 C56 51 69 41 90 41 C111 41 124 51 124 76 C116 58 105 51 90 51 C75 51 64 58 56 76 Z" fill="#3a2c24" fill-opacity="0.88"/>
       <g class="companion-brows">
-        <path d="M62 71 Q71.5 65.5 81 69.5" fill="none" stroke="#47362b" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M99 69.5 Q108.5 65.5 118 71" fill="none" stroke="#47362b" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M65 71 Q73.5 66 82 69.5" fill="none" stroke="#47362b" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M98 69.5 Q106.5 66 115 71" fill="none" stroke="#47362b" stroke-width="2.4" stroke-linecap="round"/>
       </g>
       <g class="companion-eyes">
         <g>
-          <path d="M62.5 79.5 Q71.5 74.5 80.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="71.5" cy="82.5" rx="8.2" ry="4.9" fill="#fdf9ef"/>
-          <circle cx="71.8" cy="82.5" r="3.7" fill="#352820"/>
-          <circle cx="73.3" cy="81.1" r="1.25" fill="#fff8e5"/>
-          <path d="M62.5 82 Q71.5 75.5 80.5 82" fill="none" stroke="#30221a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M65.5 79.5 Q74 74.8 82.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
+          <ellipse cx="74" cy="82.5" rx="7.6" ry="4.6" fill="#fdf9ef"/>
+          <circle cx="74.3" cy="82.5" r="3.5" fill="#352820"/>
+          <circle cx="75.7" cy="81.2" r="1.2" fill="#fff8e5"/>
+          <path d="M65.5 82 Q74 75.8 82.5 82" fill="none" stroke="#30221a" stroke-width="1.9" stroke-linecap="round"/>
         </g>
         <g>
-          <path d="M99.5 79.5 Q108.5 74.5 117.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="108.5" cy="82.5" rx="8.2" ry="4.9" fill="#fdf9ef"/>
-          <circle cx="108.2" cy="82.5" r="3.7" fill="#352820"/>
-          <circle cx="109.7" cy="81.1" r="1.25" fill="#fff8e5"/>
-          <path d="M99.5 82 Q108.5 75.5 117.5 82" fill="none" stroke="#30221a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M97.5 79.5 Q106 74.8 114.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
+          <ellipse cx="106" cy="82.5" rx="7.6" ry="4.6" fill="#fdf9ef"/>
+          <circle cx="105.7" cy="82.5" r="3.5" fill="#352820"/>
+          <circle cx="107.1" cy="81.2" r="1.2" fill="#fff8e5"/>
+          <path d="M97.5 82 Q106 75.8 114.5 82" fill="none" stroke="#30221a" stroke-width="1.9" stroke-linecap="round"/>
         </g>
       </g>
       <path d="M90 80 L87.8 95.5 Q90 98 93 95.5" fill="none" stroke="#b49164" stroke-width="1.7" stroke-linecap="round"/>
@@ -126,7 +126,7 @@ let uidSeq=0;
 function applyMouthGeometry(card,pose){
   const cx=90, cy=109;
   const open=Math.max(0,Math.min(0.92,pose.open));
-  const halfW=11.4*pose.width;
+  const halfW=10.6*pose.width;
   const topY=cy-open*1.4-(pose.press*0.25);
   const cornerY=cy+open*0.6+(pose.round*0.8)-(pose.width>1.08?0.8:0);
   const botCtrlY=cy+open*13.0+(pose.bite*0.9);
