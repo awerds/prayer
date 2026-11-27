@@ -38,8 +38,10 @@ function svgMarkup(uid){
   return `<svg class="companion-svg" viewBox="0 0 180 180" role="img" aria-label="Animated prayer companion portrait">
   <defs>
     <clipPath id="clip-${uid}"><circle cx="90" cy="90" r="84"/></clipPath>
+    <clipPath id="eyeL-${uid}"><path d="M66.8 82.2 Q74.5 76.8 82.2 82.2 Q74.5 85.8 66.8 82.2 Z"/></clipPath>
+    <clipPath id="eyeR-${uid}"><path d="M97.8 82.2 Q105.5 76.8 113.2 82.2 Q105.5 85.8 97.8 82.2 Z"/></clipPath>
     <radialGradient id="bg-${uid}" cx="50%" cy="36%" r="68%">
-      <stop offset="0%" stop-color="#2a5164"/>
+      <stop offset="0%" stop-color="#2b5265"/>
       <stop offset="65%" stop-color="#152c39"/>
       <stop offset="100%" stop-color="#0c1b25"/>
     </radialGradient>
@@ -48,13 +50,28 @@ function svgMarkup(uid){
       <stop offset="56%" stop-color="#e2be79" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#e2be79" stop-opacity="0"/>
     </radialGradient>
-    <linearGradient id="skin-${uid}" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#f6ebd5"/>
-      <stop offset="68%" stop-color="#e6d0a9"/>
-      <stop offset="100%" stop-color="#cfa97c"/>
+    <radialGradient id="skin-${uid}" cx="44%" cy="34%" r="68%">
+      <stop offset="0%" stop-color="#f8efe0"/>
+      <stop offset="58%" stop-color="#ead5b3"/>
+      <stop offset="100%" stop-color="#cfa97f"/>
+    </radialGradient>
+    <linearGradient id="hair-${uid}" x1="35%" y1="0%" x2="65%" y2="100%">
+      <stop offset="0%" stop-color="#584031"/>
+      <stop offset="48%" stop-color="#3a291f"/>
+      <stop offset="100%" stop-color="#231812"/>
+    </linearGradient>
+    <linearGradient id="beard-${uid}" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#433024"/>
+      <stop offset="65%" stop-color="#302219"/>
+      <stop offset="100%" stop-color="#211711"/>
+    </linearGradient>
+    <linearGradient id="veil-${uid}" x1="45%" y1="0%" x2="55%" y2="100%">
+      <stop offset="0%" stop-color="#284a5e"/>
+      <stop offset="60%" stop-color="#183242"/>
+      <stop offset="100%" stop-color="#0f212c"/>
     </linearGradient>
     <linearGradient id="robe-${uid}" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#214050"/>
+      <stop offset="0%" stop-color="#224152"/>
       <stop offset="100%" stop-color="#10222d"/>
     </linearGradient>
   </defs>
@@ -64,56 +81,84 @@ function svgMarkup(uid){
     <path d="M42 180 V82 A48 48 0 0 1 138 82 V180" fill="none" stroke="#e8c88f" stroke-opacity="0.13" stroke-width="1"/>
     <circle class="companion-halo" cx="90" cy="84" r="68" fill="url(#halo-${uid})"/>
     <g class="companion-body">
-      <path d="M18 186 C26 150 54 136 90 136 C126 136 154 150 162 186 Z" fill="url(#robe-${uid})" stroke="#e8c88f" stroke-opacity="0.38" stroke-width="1.2"/>
-      <path d="M68 139 L90 162 L112 139" fill="none" stroke="#e8c88f" stroke-opacity="0.72" stroke-width="1.8"/>
-      <path d="M90 162 V175 M85 168 H95" stroke="#e8c88f" stroke-opacity="0.68" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M78 124 V143 C78 148 102 148 102 143 V124 Z" fill="#d9bc90"/>
-      <path d="M78 126 Q90 137 102 126 V134 Q90 143 78 134 Z" fill="#b89367" fill-opacity="0.35"/>
+      <path d="M20 186 C27 151 54 139 90 139 C126 139 153 151 160 186 Z" fill="url(#robe-${uid})" stroke="#e8c88f" stroke-opacity="0.38" stroke-width="1.2"/>
+      <path d="M70 141 L90 162 L110 141" fill="none" stroke="#e8c88f" stroke-opacity="0.72" stroke-width="1.7"/>
+      <path d="M90 162 V175 M85.5 168 H94.5" stroke="#e8c88f" stroke-opacity="0.68" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M80 124 V143 C80 148 100 148 100 143 V124 Z" fill="#dcbf96"/>
+      <path d="M80 126 Q90 135 100 126 V132 Q90 140 80 132 Z" fill="#9c7850" fill-opacity="0.28"/>
     </g>
     <g class="companion-head">
       <g class="persona-female">
-        <path d="M36 164 C35 95 48 24 90 22 C132 24 145 95 144 164 C130 152 120 142 117 125 C122 98 122 52 90 44 C58 52 58 98 63 125 C60 142 50 152 36 164 Z" fill="#1a3444" stroke="#e8c88f" stroke-opacity="0.48" stroke-width="1.4"/>
-        <path d="M53 76 C53 41 69 32 90 32 C111 32 127 41 127 76 C120 55 107 46 90 46 C73 46 60 55 53 76 Z" fill="#3a2c24"/>
+        <path d="M35 172 C34 104 46 31 90 29 C134 31 146 104 145 172 C131 160 122 148 119 132 L123 84 C123 50 109 36 90 36 C71 36 57 50 57 84 L61 132 C58 148 49 160 35 172 Z" fill="url(#veil-${uid})" stroke="#e8c88f" stroke-opacity="0.58" stroke-width="1.4"/>
+        <path d="M43 166 C42 106 52 38 90 36 C128 38 138 106 137 166" fill="none" stroke="#e8c88f" stroke-opacity="0.32" stroke-width="1.1"/>
+        <path d="M51 94 C50 62 63 36 90 36 C117 36 130 62 129 94 C129 116 124 134 116 144 C109 138 105 132 104 124 L76 124 C75 132 71 138 64 144 C56 134 51 116 51 94 Z" fill="url(#hair-${uid})"/>
       </g>
       <g class="persona-male">
-        <path d="M52 78 C51 42 67 27 90 27 C113 27 129 42 128 78 C122 55 110 43 90 43 C70 43 58 55 52 78 Z" fill="#342822"/>
+        <path d="M52 86 C50 50 63 26 90 25 C117 26 130 50 128 86 C125 91 122 90 121 84 L121 64 C118 45 106 38 90 38 C74 38 62 45 59 64 L59 84 C58 90 55 91 52 86 Z" fill="url(#hair-${uid})"/>
       </g>
-      <ellipse cx="54.5" cy="87" rx="4.6" ry="9.5" fill="#d9bc90"/>
-      <ellipse cx="125.5" cy="87" rx="4.6" ry="9.5" fill="#d9bc90"/>
-      <path class="face-base" d="M56 76 C56 46 70 36 90 36 C110 36 124 46 124 76 C124 98 117 119 106 131 C100 137 95 140 90 140 C85 140 80 137 74 131 C63 119 56 98 56 76 Z" fill="url(#skin-${uid})"/>
+      <g class="companion-ears">
+        <ellipse cx="57" cy="88.5" rx="4" ry="8.2" fill="#dfc297"/>
+        <path d="M56.8 84.5 Q55 88.5 57.2 92" fill="none" stroke="#b99468" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round"/>
+        <ellipse cx="123" cy="88.5" rx="4" ry="8.2" fill="#dfc297"/>
+        <path d="M123.2 84.5 Q125 88.5 122.8 92" fill="none" stroke="#b99468" stroke-opacity="0.55" stroke-width="1" stroke-linecap="round"/>
+      </g>
+      <path class="face-base" d="M58 76 C58 49 71 40 90 40 C109 40 122 49 122 76 C122 96 113 115 102 127 C97 132.5 93.5 134.5 90 134.5 C86.5 134.5 83 132.5 78 127 C67 115 58 96 58 76 Z" fill="url(#skin-${uid})"/>
+      <path d="M61 88 C62 104 70 118 80 126 C72 119 63 106 61 88 Z M119 88 C118 104 110 118 100 126 C108 119 117 106 119 88 Z" fill="#b98e62" fill-opacity="0.12"/>
+      <ellipse cx="69" cy="95" rx="6.5" ry="3.5" fill="#cf8f78" fill-opacity="0.12"/>
+      <ellipse cx="111" cy="95" rx="6.5" ry="3.5" fill="#cf8f78" fill-opacity="0.12"/>
       <g class="persona-male">
-        <path class="beard-shape" d="M58 95 C61 119 73 139 90 140 C107 139 119 119 122 95 C116 112 106 122 90 122 C74 122 64 112 58 95 Z" fill="#3b2e27" fill-opacity="0.72"/>
+        <path class="beard-shape" d="M58.5 89 C58.5 112 67 128 78 135 C83 138 86.5 139 90 139 C93.5 139 97 138 102 135 C113 128 121.5 112 121.5 89 C119.5 96 117 101 113 104.5 C109 107 105 103.5 101 102 C97 100.5 93 101 90 102 C87 101 83 100.5 79 102 C75 103.5 71 107 67 104.5 C63 101 60.5 96 58.5 89 Z M75.5 106 C79.5 104.2 85 104 90 104.5 C95 104 100.5 104.2 104.5 106 C106.5 111 104.2 116.5 99.5 119 C95.5 121 93 119 90 119 C87 119 84.5 121 80.5 119 C75.8 116.5 73.5 111 75.5 106 Z" fill="url(#beard-${uid})" fill-opacity="0.90" fill-rule="evenodd"/>
+        <path d="M69 118 C75 129 83 134 90 135 C97 134 105 129 111 118" fill="none" stroke="#5c4536" stroke-opacity="0.32" stroke-width="1.3" stroke-linecap="round"/>
       </g>
-      <path d="M56 76 C56 51 69 41 90 41 C111 41 124 51 124 76 C116 58 105 51 90 51 C75 51 64 58 56 76 Z" fill="#3a2c24" fill-opacity="0.88"/>
+      <g class="persona-male">
+        <path d="M53.5 84 C51.5 47 64 25 90 24.5 C115 25 128.5 46 126.5 84 C124.5 88 122 87 121.5 80 C121 69 119 60 114.5 55 C107 49 95 48 82 51.5 C76 53 72 52.5 69.5 49.5 C67 54 62 60 59.5 72 C58.8 77 58.5 82 58 85 C56.5 88 54.5 87 53.5 84 Z" fill="url(#hair-${uid})"/>
+        <path d="M70 46 C82 35 103 34 116 47" fill="none" stroke="#765a47" stroke-opacity="0.45" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M75 39 C87 31 102 31 113 40" fill="none" stroke="#765a47" stroke-opacity="0.34" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M58 58 C61 45 68 37 78 33" fill="none" stroke="#765a47" stroke-opacity="0.32" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
+      <g class="persona-female">
+        <path d="M55 96 C54 60 64 35 90 35 C116 35 126 60 125 96 C123 76 118 62 111 54 C104 47 96 46 90 49.5 C84 46 76 47 69 54 C62 62 57 76 55 96 Z" fill="url(#hair-${uid})"/>
+        <path d="M62 58 C69 47 79 43 89 47 M118 58 C111 47 101 43 91 47" fill="none" stroke="#765a47" stroke-opacity="0.45" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M58 76 C60 63 65 54 72 49 M122 76 C120 63 115 54 108 49" fill="none" stroke="#765a47" stroke-opacity="0.32" stroke-width="1.2" stroke-linecap="round"/>
+      </g>
       <g class="companion-brows">
-        <path d="M65 71 Q73.5 66 82 69.5" fill="none" stroke="#47362b" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M98 69.5 Q106.5 66 115 71" fill="none" stroke="#47362b" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M66.2 73.2 Q74.5 68.5 82.6 71.2 Q74.5 70.6 66.2 73.2 Z" fill="#443227" stroke="#443227" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M113.8 73.2 Q105.5 68.5 97.4 71.2 Q105.5 70.6 113.8 73.2 Z" fill="#443227" stroke="#443227" stroke-width="1.1" stroke-linejoin="round"/>
       </g>
       <g class="companion-eyes">
         <g>
-          <path d="M65.5 79.5 Q74 74.8 82.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="74" cy="82.5" rx="7.6" ry="4.6" fill="#fdf9ef"/>
-          <circle cx="74.3" cy="82.5" r="3.5" fill="#352820"/>
-          <circle cx="75.7" cy="81.2" r="1.2" fill="#fff8e5"/>
-          <path d="M65.5 82 Q74 75.8 82.5 82" fill="none" stroke="#30221a" stroke-width="1.9" stroke-linecap="round"/>
+          <path d="M66.8 78.6 Q74.5 74.6 82.2 79" fill="none" stroke="#a6845c" stroke-opacity="0.48" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M66.8 82.2 Q74.5 76.8 82.2 82.2 Q74.5 85.8 66.8 82.2 Z" fill="#fdf9ef"/>
+          <g clip-path="url(#eyeL-${uid})">
+            <circle cx="74.6" cy="81.6" r="3.6" fill="#463427"/>
+            <circle cx="74.6" cy="81.6" r="1.8" fill="#1a120e"/>
+            <circle cx="76" cy="80.5" r="1.05" fill="#fff9e8"/>
+          </g>
+          <path d="M66.5 82.2 Q74.5 76.5 82.5 82.2" fill="none" stroke="#2c1f17" stroke-width="1.75" stroke-linecap="round"/>
+          <path d="M68.5 83.4 Q74.5 85.4 80.5 83.4" fill="none" stroke="#a6845c" stroke-opacity="0.38" stroke-width="0.9" stroke-linecap="round"/>
         </g>
         <g>
-          <path d="M97.5 79.5 Q106 74.8 114.5 79.5" fill="none" stroke="#9e7f5a" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round"/>
-          <ellipse cx="106" cy="82.5" rx="7.6" ry="4.6" fill="#fdf9ef"/>
-          <circle cx="105.7" cy="82.5" r="3.5" fill="#352820"/>
-          <circle cx="107.1" cy="81.2" r="1.2" fill="#fff8e5"/>
-          <path d="M97.5 82 Q106 75.8 114.5 82" fill="none" stroke="#30221a" stroke-width="1.9" stroke-linecap="round"/>
+          <path d="M97.8 79 Q105.5 74.6 113.2 78.6" fill="none" stroke="#a6845c" stroke-opacity="0.48" stroke-width="1.1" stroke-linecap="round"/>
+          <path d="M97.8 82.2 Q105.5 76.8 113.2 82.2 Q105.5 85.8 97.8 82.2 Z" fill="#fdf9ef"/>
+          <g clip-path="url(#eyeR-${uid})">
+            <circle cx="105.4" cy="81.6" r="3.6" fill="#463427"/>
+            <circle cx="105.4" cy="81.6" r="1.8" fill="#1a120e"/>
+            <circle cx="106.8" cy="80.5" r="1.05" fill="#fff9e8"/>
+          </g>
+          <path d="M97.5 82.2 Q105.5 76.5 113.5 82.2" fill="none" stroke="#2c1f17" stroke-width="1.75" stroke-linecap="round"/>
+          <path d="M99.5 83.4 Q105.5 85.4 111.5 83.4" fill="none" stroke="#a6845c" stroke-opacity="0.38" stroke-width="0.9" stroke-linecap="round"/>
         </g>
       </g>
-      <path d="M90 80 L87.8 95.5 Q90 98 93 95.5" fill="none" stroke="#b49164" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M90.5 79.5 L92.2 94.5 Q90 97.2 87.5 95.5 Z" fill="#b99266" fill-opacity="0.22"/>
+      <path d="M86 95.8 Q88 97.5 90 96.7 Q92 97.5 94 95.8" fill="none" stroke="#b38d62" stroke-opacity="0.72" stroke-width="1.3" stroke-linecap="round"/>
       <g class="companion-mouth">
-        <path class="mouth-cavity" d="M79 109 Q90 109 101 109 Q90 109 79 109 Z" fill="#462221"/>
-        <path class="mouth-tongue" d="M84 113 Q90 111.5 96 113 Q90 115 84 113 Z" fill="#8f4c48" opacity="0"/>
-        <path class="mouth-teeth" d="M82 108.5 Q90 109.2 98 108.5 L97 110.5 Q90 111 83 110.5 Z" fill="#f8f1e4" opacity="0"/>
-        <path class="lip-upper" d="M79 109 Q84.5 106.8 90 108.2 Q95.5 106.8 101 109" fill="none" stroke="#8d5349" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path class="lip-lower" d="M80 109.5 Q90 112.2 100 109.5" fill="none" stroke="#a6695d" stroke-width="2" stroke-linecap="round"/>
+        <path class="mouth-cavity" d="M79.5 109.5 Q90 109.5 100.5 109.5 Q90 109.5 79.5 109.5 Z" fill="#462221"/>
+        <path class="mouth-tongue" d="M84 113.5 Q90 112 96 113.5 Q90 115.5 84 113.5 Z" fill="#8f4c48" opacity="0"/>
+        <path class="mouth-teeth" d="M82.5 109 Q90 109.7 97.5 109 L96.5 111 Q90 111.5 83.5 111 Z" fill="#f8f1e4" opacity="0"/>
+        <path class="lip-upper" d="M79.5 109.5 Q84.8 107.4 90 108.7 Q95.2 107.4 100.5 109.5" fill="none" stroke="#9b5c51" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="lip-lower" d="M80.5 110 Q90 112.5 99.5 110" fill="none" stroke="#b47467" stroke-width="2" stroke-linecap="round"/>
       </g>
-      <path class="chin-line" d="M83 126.5 Q90 128.5 97 126.5" fill="none" stroke="#b9966b" stroke-opacity="0.45" stroke-width="1.3" stroke-linecap="round"/>
+      <path class="chin-line" d="M84.5 124.8 Q90 126.5 95.5 124.8" fill="none" stroke="#b9966b" stroke-opacity="0.34" stroke-width="1.1" stroke-linecap="round"/>
     </g>
   </g>
   <circle cx="90" cy="90" r="84.5" fill="none" stroke="#e8c88f" stroke-opacity="0.72" stroke-width="1.8"/>
@@ -128,7 +173,8 @@ function applyMouthGeometry(card,pose){
   const open=Math.max(0,Math.min(0.92,pose.open));
   const halfW=10.6*pose.width;
   const topY=cy-open*1.4-(pose.press*0.25);
-  const cornerY=cy+open*0.6+(pose.round*0.8)-(pose.width>1.08?0.8:0);
+  const serenity=open<0.06&&pose.press<0.2?-0.75:0;
+  const cornerY=cy+serenity+open*0.6+(pose.round*0.8)-(pose.width>1.08?0.8:0);
   const botCtrlY=cy+open*13.0+(pose.bite*0.9);
   const cavVisualTop=(cornerY+(topY-open*0.8))/2;
   const cavVisualBot=(cornerY+botCtrlY)/2;
