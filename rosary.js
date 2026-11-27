@@ -492,13 +492,13 @@ export function renderRosaryPage(main,ctx){
   const reminderHtml=ctx.reminders.renderPanelMarkup(getAppointedMystery(new Date(),curSchedule));
 
   main.innerHTML=`
-    <div class="intro rosary-hero-header">
-      <div class="rosary-hero-copy">
-        <div class="eyebrow">THE MOST HOLY ROSARY · ${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}).toUpperCase()}</div>
+    <div class="intro">
+      <div>
+        <div class="eyebrow">THE MOST HOLY ROSARY</div>
         <h1>Pray the Rosary, bead by bead.</h1>
         <p id="rosary-appointed-note"></p>
       </div>
-      <div id="rosary-companion" class="companion-dock rosary-header-companion"></div>
+      <div class="date-badge">${new Date().toLocaleDateString(undefined,{weekday:'long'})}<br>${new Date().toLocaleDateString(undefined,{month:'long',day:'numeric'})}</div>
     </div>
 
     <div id="rosary-complete-banner" class="completion-note" role="status" hidden>✛ You completed today’s Rosary. May Our Lady keep you close to Christ.</div>
@@ -530,10 +530,15 @@ export function renderRosaryPage(main,ctx){
 
       <section class="rosary-prayer-panel">
         <div class="rosary-prayer-card">
-          <div class="eyebrow" id="rosary-step-eyebrow"></div>
-          <h2 id="rosary-step-title"></h2>
-          <p class="latin" id="rosary-step-sub"></p>
-          <p class="rosary-meditation" id="rosary-step-meditation" hidden></p>
+          <div class="rosary-card-header">
+            <div class="rosary-card-heading">
+              <div class="eyebrow" id="rosary-step-eyebrow"></div>
+              <h2 id="rosary-step-title"></h2>
+              <p class="latin" id="rosary-step-sub"></p>
+              <p class="rosary-meditation" id="rosary-step-meditation" hidden></p>
+            </div>
+            <div id="rosary-companion" class="companion-dock rosary-card-companion"></div>
+          </div>
 
           <div class="rosary-audio-bar">
             <button type="button" class="primary" id="rosary-listen">▶ Pray from this bead</button>
