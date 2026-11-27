@@ -46,8 +46,9 @@ dialog{background:rgba(22,40,52,.94);color:var(--ink);border:1px solid #e9cd9273
 .companion-detail{margin:0;font-size:13px;color:#d6ddd6}
 .companion-controls{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px}
 .companion-controls .subtle-button{font-size:11px;color:#e6d3ad;padding:3px 0}
-.companion-card[data-persona="female"] .persona-male{display:none}
-.companion-card[data-persona="male"] .persona-female{display:none}
+.companion-card[data-persona="female"] .persona-male,.companion-stage-wrap[data-persona="female"] .persona-male{display:none}
+.companion-card[data-persona="male"] .persona-female,.companion-stage-wrap[data-persona="male"] .persona-female{display:none}
+.companion-stage-wrap[data-hidden="true"]{display:none}
 .companion-head,.companion-halo,.companion-brows,.companion-eyes,.chin-line{transform-box:fill-box;transform-origin:center}
 .companion-head{transition:transform .14s cubic-bezier(.22,.61,.36,1)}
 .companion-halo{transition:transform .12s ease-out,opacity .18s ease-out}
@@ -58,9 +59,9 @@ dialog{background:rgba(22,40,52,.94);color:var(--ink);border:1px solid #e9cd9273
 @keyframes companion-breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.6px)}}
 @keyframes companion-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:no-preference){
- .companion-card[data-motion="on"][data-state="idle"] .companion-head{animation:companion-breathe 5.5s ease-in-out infinite}
- .companion-card[data-motion="on"][data-state="speaking"] .companion-ring{animation:companion-orbit 28s linear infinite}
- .companion-card[data-motion="on"][data-state="listening"] .companion-ring{animation:companion-orbit 48s linear infinite}
+ .companion-card[data-motion="on"][data-state="idle"] .companion-head,.companion-stage-wrap[data-motion="on"][data-state="idle"] .companion-head{animation:companion-breathe 5.5s ease-in-out infinite}
+ .companion-card[data-motion="on"][data-state="speaking"] .companion-ring,.companion-stage-wrap[data-motion="on"][data-state="speaking"] .companion-ring{animation:companion-orbit 28s linear infinite}
+ .companion-card[data-motion="on"][data-state="listening"] .companion-ring,.companion-stage-wrap[data-motion="on"][data-state="listening"] .companion-ring{animation:companion-orbit 48s linear infinite}
 }
 @media(max-width:760px){
  .companion-card{flex-direction:column;text-align:center;gap:14px;padding:16px}
@@ -127,21 +128,15 @@ footer{margin:10px 28px 0}
 .rosary-decade-jumps button{min-block-size:32px;min-inline-size:36px;padding:5px 10px;border-radius:7px;border:1px solid #f6dfaa38;background:#162d3acf;color:#d5ddd5;font-size:11px}
 .rosary-decade-jumps button.active{background:#e4c993;color:#1e323d;border-color:#f2dda9;font-weight:600}
 .rosary-bead-hint{font-size:11px;margin:10px 0 0;text-align:center}
-.rosary-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
-.rosary-card-heading{min-width:0;flex:1 1 260px}
-.rosary-card-companion{margin:0;flex:0 0 auto}
-.rosary-card-companion .companion-card{flex-direction:column;text-align:center;gap:8px;padding:10px 14px;background:rgba(12,26,35,.48);width:186px}
-.rosary-card-companion .companion-card[data-hidden="true"]{width:auto;padding:8px 12px}
-.rosary-card-companion .companion-stage{width:148px;height:148px;flex:0 0 148px}
-.rosary-card-companion .companion-voice{font-size:10px;margin-bottom:2px}
-.rosary-card-companion .companion-detail{font-size:11px}
-.rosary-card-companion .companion-controls{justify-content:center;gap:10px;margin-top:4px}
-@media(max-width:760px){
- .rosary-card-header{flex-direction:column;align-items:stretch;gap:14px}
- .rosary-card-companion .companion-card{width:100%;flex-direction:row;text-align:left;gap:14px}
- .rosary-card-companion .companion-stage{width:112px;height:112px;flex:0 0 112px}
- .rosary-card-companion .companion-controls{justify-content:flex-start}
-}
+.rosary-beads-frame{position:relative;width:100%;max-width:400px}
+.rosary-bead-center{position:absolute;left:50%;top:36.86%;transform:translate(-50%,-50%);width:56%;aspect-ratio:1;pointer-events:none;z-index:2;display:grid;place-items:center}
+.rosary-bead-center .companion-stage-wrap,.rosary-bead-center .companion-stage{width:100%;height:100%;flex:none}
+.rosary-progress-pill{margin-top:8px;font-size:11px;letter-spacing:.6px;color:#e6d6b4;text-align:center}
+.rosary-companion-bar{width:100%;margin-top:10px}
+.rosary-companion-bar .companion-card{padding:10px 14px;gap:6px;flex-direction:column;text-align:center;background:rgba(12,26,35,.48)}
+.rosary-companion-bar .companion-voice{font-size:10px;margin-bottom:2px}
+.rosary-companion-bar .companion-detail{font-size:11px}
+.rosary-companion-bar .companion-controls{justify-content:center;gap:14px;margin-top:4px}
 .rosary-prayer-card .eyebrow{color:var(--gold);margin-bottom:8px}
 .rosary-prayer-card h2{font-size:30px;margin:0 0 6px;color:#fff4dc}
 .rosary-meditation{margin:12px 0 0;padding:12px 15px;border-left:2px solid var(--gold);background:#12253199;border-radius:0 8px 8px 0;font-size:13px;color:#dbe2dc}

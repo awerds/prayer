@@ -1,9 +1,9 @@
-import {cancelVoice, downloadVoice, browserSpeak, KITTEN_VOICES} from './voice.js?v=3';
-import {mountCompanion, setCompanionVoice, setCompanionState, startAudioSync, startTextSync, syncWordBoundary, stopCompanionSync} from './companion.js?v=3';
+import {cancelVoice, downloadVoice, browserSpeak, KITTEN_VOICES} from './voice.js?v=4';
+import {mountCompanion, setCompanionVoice, setCompanionState, startAudioSync, startTextSync, syncWordBoundary, stopCompanionSync} from './companion.js?v=4';
 import {prayers} from './prayers.js';
 import {isoDate, hydrateToday, renderLiturgyPage} from './liturgy.js';
-import {getAppointedMystery, renderRosaryPage} from './rosary.js?v=3';
-import {createReminderManager, formatCountdown} from './reminders.js?v=3';
+import {getAppointedMystery, renderRosaryPage} from './rosary.js?v=4';
+import {createReminderManager, formatCountdown} from './reminders.js?v=4';
 const reminders=createReminderManager();
 const $=s=>document.querySelector(s), main=$('#main');
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
