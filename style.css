@@ -127,17 +127,20 @@ footer{margin:10px 28px 0}
 .rosary-decade-jumps button{min-block-size:32px;min-inline-size:36px;padding:5px 10px;border-radius:7px;border:1px solid #f6dfaa38;background:#162d3acf;color:#d5ddd5;font-size:11px}
 .rosary-decade-jumps button.active{background:#e4c993;color:#1e323d;border-color:#f2dda9;font-weight:600}
 .rosary-bead-hint{font-size:11px;margin:10px 0 0;text-align:center}
-.rosary-prayer-panel .companion-dock{margin:0 0 16px}
-.rosary-hero-header{align-items:center;gap:24px;padding:18px 24px;margin-bottom:16px}
-.rosary-hero-copy{min-width:0;flex:1 1 320px}
-.rosary-hero-header h1{font-size:clamp(28px,2.8vw,38px);margin:6px 0}
-.rosary-header-companion{margin:0;flex:0 1 420px}
-.rosary-header-companion .companion-card{padding:10px 14px;gap:16px;background:rgba(12,26,35,.52)}
-.rosary-header-companion .companion-stage{width:132px;height:132px;flex:0 0 132px}
-@media(max-width:860px){
- .rosary-hero-header{flex-direction:column;align-items:stretch;gap:14px}
- .rosary-header-companion{flex:none;width:100%}
- .rosary-header-companion .companion-stage{width:112px;height:112px;flex:0 0 112px}
+.rosary-card-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.rosary-card-heading{min-width:0;flex:1 1 260px}
+.rosary-card-companion{margin:0;flex:0 0 auto}
+.rosary-card-companion .companion-card{flex-direction:column;text-align:center;gap:8px;padding:10px 14px;background:rgba(12,26,35,.48);width:186px}
+.rosary-card-companion .companion-card[data-hidden="true"]{width:auto;padding:8px 12px}
+.rosary-card-companion .companion-stage{width:148px;height:148px;flex:0 0 148px}
+.rosary-card-companion .companion-voice{font-size:10px;margin-bottom:2px}
+.rosary-card-companion .companion-detail{font-size:11px}
+.rosary-card-companion .companion-controls{justify-content:center;gap:10px;margin-top:4px}
+@media(max-width:760px){
+ .rosary-card-header{flex-direction:column;align-items:stretch;gap:14px}
+ .rosary-card-companion .companion-card{width:100%;flex-direction:row;text-align:left;gap:14px}
+ .rosary-card-companion .companion-stage{width:112px;height:112px;flex:0 0 112px}
+ .rosary-card-companion .companion-controls{justify-content:flex-start}
 }
 .rosary-prayer-card .eyebrow{color:var(--gold);margin-bottom:8px}
 .rosary-prayer-card h2{font-size:30px;margin:0 0 6px;color:#fff4dc}
