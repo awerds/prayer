@@ -201,38 +201,44 @@ function applyMouthGeometry(card,pose){
 function syncDom(){
   const allow=motionAllowed();
   const pose=allow?state.cur:POSES.rest;
-  for(const host of state.mounted){
-    if(!host.isConnected){state.mounted.delete(host);continue}
-    const card=host.querySelector('.companion-card');
-    if(!card)continue;
-    card.dataset.state=state.mode;
-    card.dataset.persona=state.persona;
-    card.dataset.hidden=state.hidden?'true':'false';
-    card.dataset.motion=allow?'on':'off';
-    const label=card.querySelector('.companion-voice');
-    const detail=card.querySelector('.companion-detail');
-    if(label)label.textContent=state.voiceLabel;
-    if(detail)detail.textContent=state.detail;
-    const hideBtn=card.querySelector('[data-companion-hide]');
-    const motionBtn=card.querySelector('[data-companion-motion]');
-    if(hideBtn)hideBtn.textContent=state.hidden?'Show portrait':'Hide portrait';
-    if(motionBtn){
-      motionBtn.hidden=state.hidden;
-      motionBtn.textContent=state.motionPaused?'Resume motion':'Pause motion';
+  for(const entry of state.mounted){
+    if(!entry.root.isConnected){state.mounted.delete(entry);continue}
+    const card=entry.root.querySelector('.companion-card');
+    const stageEl=entry.stageHost?.querySelector('.companion-stage-wrap')||card;
+    if(!card&&!stageEl)continue;
+    for(const el of new Set([card,stageEl].filter(Boolean))){
+      el.dataset.state=state.mode;
+      el.dataset.persona=state.persona;
+      el.dataset.hidden=state.hidden?'true':'false';
+      el.dataset.motion=allow?'on':'off';
     }
-    applyMouthGeometry(card,pose);
-    const halo=card.querySelector('.companion-halo');
+    if(card){
+      const label=card.querySelector('.companion-voice');
+      const detail=card.querySelector('.companion-detail');
+      if(label)label.textContent=state.voiceLabel;
+      if(detail)detail.textContent=state.detail;
+      const hideBtn=card.querySelector('[data-companion-hide]');
+      const motionBtn=card.querySelector('[data-companion-motion]');
+      if(hideBtn)hideBtn.textContent=state.hidden?'Show portrait':'Hide portrait';
+      if(motionBtn){
+        motionBtn.hidden=state.hidden;
+        motionBtn.textContent=state.motionPaused?'Resume motion':'Pause motion';
+      }
+    }
+    if(!stageEl)continue;
+    applyMouthGeometry(stageEl,pose);
+    const halo=stageEl.querySelector('.companion-halo');
     if(halo){
       const boost=allow?state.energy:0;
       halo.style.opacity=(state.mode==='speaking'?.54+boost*.46:state.mode==='listening'?.68:.34).toFixed(3);
       halo.style.transform=`scale(${(1+boost*.13).toFixed(3)})`;
     }
-    const brows=card.querySelector('.companion-brows');
+    const brows=stageEl.querySelector('.companion-brows');
     if(brows){
       const dy=allow&&state.mode==='speaking'?-Math.min(2.6,state.energy*3.5):0;
       brows.style.transform=`translateY(${dy.toFixed(2)}px)`;
     }
-    const head=card.querySelector('.companion-head');
+    const head=stageEl.querySelector('.companion-head');
     if(head){
       if(allow&&state.mode==='speaking'){
         const t=performance.now()*0.0017;
@@ -253,8 +259,9 @@ function scheduleBlink(){
   const delay=3200+Math.random()*3400;
   state.blinkTimer=setTimeout(()=>{
     if(motionAllowed()&&!state.hidden){
-      for(const host of state.mounted){
-        const eyes=host.querySelector('.companion-eyes');
+      for(const entry of state.mounted){
+        const scope=entry.stageHost||entry.root;
+        const eyes=scope.querySelector('.companion-eyes');
         if(eyes){
           eyes.classList.add('blinking');
           setTimeout(()=>eyes.classList.remove('blinking'),135);
@@ -428,20 +435,36 @@ function ensureLoop(){
   }
 }
 
-export function mountCompanion(container){
+export function mountCompanion(container,opts={}){
   if(!container)return;
   const uid=`c${++uidSeq}`;
-  container.innerHTML=`<div class="companion-card" data-state="${state.mode}" data-persona="${state.persona}" data-hidden="${state.hidden}" data-motion="${motionAllowed()?'on':'off'}">
-    <div class="companion-stage">${svgMarkup(uid)}</div>
-    <div class="companion-meta">
-      <div class="eyebrow companion-voice"></div>
-      <p class="companion-detail"></p>
-      <div class="companion-controls">
-        <button type="button" class="subtle-button" data-companion-motion></button>
-        <button type="button" class="subtle-button" data-companion-hide></button>
+  const attrs=`data-state="${state.mode}" data-persona="${state.persona}" data-hidden="${state.hidden}" data-motion="${motionAllowed()?'on':'off'}"`;
+  const stageTarget=opts.stageTarget||null;
+  if(stageTarget){
+    stageTarget.innerHTML=`<div class="companion-stage-wrap" ${attrs}><div class="companion-stage">${svgMarkup(uid)}</div></div>`;
+    container.innerHTML=`<div class="companion-card companion-bar-only" ${attrs}>
+      <div class="companion-meta">
+        <div class="eyebrow companion-voice"></div>
+        <p class="companion-detail"></p>
+        <div class="companion-controls">
+          <button type="button" class="subtle-button" data-companion-motion></button>
+          <button type="button" class="subtle-button" data-companion-hide></button>
+        </div>
       </div>
-    </div>
-  </div>`;
+    </div>`;
+  }else{
+    container.innerHTML=`<div class="companion-card" ${attrs}>
+      <div class="companion-stage">${svgMarkup(uid)}</div>
+      <div class="companion-meta">
+        <div class="eyebrow companion-voice"></div>
+        <p class="companion-detail"></p>
+        <div class="companion-controls">
+          <button type="button" class="subtle-button" data-companion-motion></button>
+          <button type="button" class="subtle-button" data-companion-hide></button>
+        </div>
+      </div>
+    </div>`;
+  }
   container.querySelector('[data-companion-hide]').onclick=()=>{
     state.hidden=!state.hidden;
     writePref({hidden:state.hidden,motionPaused:state.motionPaused});
@@ -452,7 +475,10 @@ export function mountCompanion(container){
     writePref({hidden:state.hidden,motionPaused:state.motionPaused});
     syncDom();
   };
-  state.mounted.add(container);
+  for(const existing of state.mounted){
+    if(existing.root===container)state.mounted.delete(existing);
+  }
+  state.mounted.add({root:container,stageHost:stageTarget||container});
   syncDom();
 }
 

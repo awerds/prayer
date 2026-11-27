@@ -1,4 +1,4 @@
-import {mountCompanion, setCompanionState} from './companion.js?v=3';
+import {mountCompanion, setCompanionState} from './companion.js?v=4';
 
 const STATE_KEY='oravigil-rosary-state';
 const readState=()=>{try{return JSON.parse(localStorage.getItem(STATE_KEY))||{}}catch{return {}}};
@@ -388,6 +388,13 @@ export function renderRosaryPage(main,ctx){
     const metaEl=main.querySelector('#rosary-appointed-note');
     if(metaEl)metaEl.textContent=`Today’s appointed set: ${appToday.name} (${appToday.reason})`;
 
+    const pill=main.querySelector('#rosary-progress-pill');
+    if(pill){
+      const secLabel=step.decade>=1&&step.decade<=5?`Decade ${step.decade} of 5`:step.decade===6?'Closing':'Introductory';
+      const pct=Math.round((stepIndex/(steps.length-1))*100);
+      pill.textContent=`${secLabel} · Bead ${stepIndex+1} of ${steps.length} · ${pct}%`;
+    }
+
     main.querySelectorAll('[data-mystery]').forEach(b=>{
       const active=b.dataset.mystery===mysteryKey;
       b.classList.toggle('active',active);
@@ -515,7 +522,12 @@ export function renderRosaryPage(main,ctx){
 
     <div class="rosary-stage">
       <section class="rosary-beads-panel" aria-label="Virtual Rosary beads">
-        <div id="rosary-beads-host"></div>
+        <div class="rosary-beads-frame">
+          <div id="rosary-beads-host"></div>
+          <div id="rosary-bead-center" class="rosary-bead-center"></div>
+        </div>
+        <div id="rosary-progress-pill" class="rosary-progress-pill"></div>
+        <div id="rosary-companion" class="rosary-companion-bar"></div>
         <div class="rosary-decade-jumps" role="group" aria-label="Jump to section">
           <button type="button" data-decade-jump="0">Intro</button>
           <button type="button" data-decade-jump="1">I</button>
@@ -530,15 +542,10 @@ export function renderRosaryPage(main,ctx){
 
       <section class="rosary-prayer-panel">
         <div class="rosary-prayer-card">
-          <div class="rosary-card-header">
-            <div class="rosary-card-heading">
-              <div class="eyebrow" id="rosary-step-eyebrow"></div>
-              <h2 id="rosary-step-title"></h2>
-              <p class="latin" id="rosary-step-sub"></p>
-              <p class="rosary-meditation" id="rosary-step-meditation" hidden></p>
-            </div>
-            <div id="rosary-companion" class="companion-dock rosary-card-companion"></div>
-          </div>
+          <div class="eyebrow" id="rosary-step-eyebrow"></div>
+          <h2 id="rosary-step-title"></h2>
+          <p class="latin" id="rosary-step-sub"></p>
+          <p class="rosary-meditation" id="rosary-step-meditation" hidden></p>
 
           <div class="rosary-audio-bar">
             <button type="button" class="primary" id="rosary-listen">▶ Pray from this bead</button>
@@ -560,7 +567,7 @@ export function renderRosaryPage(main,ctx){
     ${reminderHtml}
   `;
 
-  mountCompanion(main.querySelector('#rosary-companion'));
+  mountCompanion(main.querySelector('#rosary-companion'),{stageTarget:main.querySelector('#rosary-bead-center')});
   ctx.syncCompanionIdentity();
   ctx.reminders.bindPanel(main,()=>getAppointedMystery(new Date(),curSchedule));
 
