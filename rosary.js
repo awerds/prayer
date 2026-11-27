@@ -1,4 +1,4 @@
-import {mountCompanion, setCompanionState} from './companion.js';
+import {mountCompanion, setCompanionState} from './companion.js?v=3';
 
 const STATE_KEY='oravigil-rosary-state';
 const readState=()=>{try{return JSON.parse(localStorage.getItem(STATE_KEY))||{}}catch{return {}}};

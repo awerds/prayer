@@ -127,7 +127,7 @@ footer{margin:10px 28px 0}
 .rosary-decade-jumps button{min-block-size:32px;min-inline-size:36px;padding:5px 10px;border-radius:7px;border:1px solid #f6dfaa38;background:#162d3acf;color:#d5ddd5;font-size:11px}
 .rosary-decade-jumps button.active{background:#e4c993;color:#1e323d;border-color:#f2dda9;font-weight:600}
 .rosary-bead-hint{font-size:11px;margin:10px 0 0;text-align:center}
-.rosary-card-header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.rosary-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
 .rosary-card-heading{min-width:0;flex:1 1 260px}
 .rosary-card-companion{margin:0;flex:0 0 auto}
 .rosary-card-companion .companion-card{flex-direction:column;text-align:center;gap:8px;padding:10px 14px;background:rgba(12,26,35,.48);width:186px}
