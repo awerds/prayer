@@ -1,4 +1,4 @@
-import {getAppointedMystery} from './rosary.js?v=4';
+import {getAppointedMystery} from './rosary.js?v=5';
 
 const REM_KEY='oravigil-reminders-v1';
 const FIRED_KEY='oravigil-reminders-fired';
