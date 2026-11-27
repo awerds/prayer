@@ -85,3 +85,91 @@ footer{margin:10px 28px 0}
  footer{margin:0 14px}
  #prayer-dialog{width:calc(100vw - 20px)}
 }
+/* Visually hidden accessibility utility */
+.visually-hidden:where(:not(:focus-within,:active)){position:absolute!important;clip-path:inset(50%)!important;overflow:hidden!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;white-space:nowrap!important}
+/* Virtual Rosary */
+.rosary-bar{display:flex;flex-wrap:wrap;gap:14px;align-items:stretch;justify-content:space-between;margin:18px 0 22px}
+.rosary-mysteries{display:flex;flex-wrap:wrap;gap:10px;flex:1 1 520px}
+.rosary-mysteries button{flex:1 1 140px;padding:12px 15px;text-align:left;background:var(--glass);color:var(--ink);border:1px solid var(--line);border-radius:10px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:border-color .2s,background .2s}
+.rosary-mysteries button strong{display:block;font:17px Georgia,serif;color:#fff2d6}
+.rosary-mysteries button span{display:block;font-size:10px;color:#cbd2cd;margin-top:3px}
+.rosary-mysteries button.active{background:#bba57034;border-color:#e8c88f}
+.rosary-schedule-toggle{display:inline-flex;align-self:center;gap:4px;padding:4px;background:#142a38db;border:1px solid var(--line);border-radius:9px}
+.rosary-schedule-toggle button{border:0;background:transparent;color:#d0d8d1;padding:8px 12px;border-radius:6px;font-size:11px;min-block-size:34px}
+.rosary-schedule-toggle button.active{background:#e4cf9e;color:#1d303a;font-weight:600}
+.rosary-stage{display:grid;grid-template-columns:minmax(310px,430px) minmax(0,1fr);gap:24px;align-items:start}
+.rosary-beads-panel,.rosary-prayer-card,.reminder-panel{background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:22px;backdrop-filter:blur(20px) saturate(125%);-webkit-backdrop-filter:blur(20px) saturate(125%);box-shadow:0 12px 38px #07151f36,inset 0 1px #ffffff12}
+.rosary-beads-panel{position:sticky;top:20px;display:flex;flex-direction:column;align-items:center}
+#rosary-beads-host{width:100%;max-width:390px}
+.rosary-svg{width:100%;height:auto;display:block;overflow:visible}
+.rosary-chain{stroke:#c7ab72;stroke-opacity:.42;stroke-width:1.7}
+.rosary-roman{font:11px Georgia,serif;fill:#d9c496;opacity:.68;pointer-events:none}
+.rosary-roman.active{fill:#fff0c9;opacity:1;font-weight:700}
+.rosary-center-eyebrow{font-size:9px;letter-spacing:1.8px;fill:#e8c88f;font-weight:650}
+.rosary-center-count{font:28px Georgia,serif;fill:#fff3d6}
+.rosary-center-pct{font-size:11px;fill:#cbd4ce}
+.rosary-bead{cursor:pointer;outline:none}
+.rosary-bead .bead-body{fill:url(#bead-idle);stroke:#e8c88f66;stroke-width:1.1;transition:transform .16s ease,stroke .16s ease}
+.rosary-bead.kind-pater .bead-body{fill:url(#bead-pater);stroke:#f4dfa999}
+.rosary-bead.kind-medallion .bead-body{fill:#1c3847;stroke:#e8c88f;stroke-width:1.5}
+.rosary-bead .medallion-glyph{font:italic 12px Georgia,serif;fill:#f3dc9f;pointer-events:none}
+.rosary-bead .crucifix-shape{fill:#d9ba7b;stroke:#fff0c688;stroke-width:1;transition:fill .16s ease}
+.rosary-bead .bead-glint{fill:#ffffff66;pointer-events:none}
+.rosary-bead.is-done .bead-body{fill:url(#bead-done);stroke:#fff0c8aa}
+.rosary-bead.is-done .crucifix-shape{fill:#f3dc9f}
+.rosary-bead.is-current .bead-body{fill:url(#bead-done);stroke:#fff7dc;stroke-width:2}
+.rosary-bead.is-current .crucifix-shape{fill:#fff0c5;stroke:#fff7dc}
+.rosary-bead .bead-halo{fill:#f5dc9e2b;stroke:#f5dc9eaa;stroke-width:1.3;transform-box:fill-box;transform-origin:center}
+.rosary-bead:focus-visible .bead-body,.rosary-bead:focus-visible .crucifix-shape{stroke:#ffe5a8;stroke-width:2.6}
+@keyframes bead-pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.18);opacity:.4}}
+@media(prefers-reduced-motion:no-preference){.rosary-bead.is-current .bead-halo{animation:bead-pulse 2.2s ease-in-out infinite}}
+.rosary-decade-jumps{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;width:100%}
+.rosary-decade-jumps button{min-block-size:32px;min-inline-size:36px;padding:5px 10px;border-radius:7px;border:1px solid #f6dfaa38;background:#162d3acf;color:#d5ddd5;font-size:11px}
+.rosary-decade-jumps button.active{background:#e4c993;color:#1e323d;border-color:#f2dda9;font-weight:600}
+.rosary-bead-hint{font-size:11px;margin:10px 0 0;text-align:center}
+.rosary-prayer-panel .companion-dock{margin:0 0 16px}
+.rosary-prayer-card .eyebrow{color:var(--gold);margin-bottom:8px}
+.rosary-prayer-card h2{font-size:30px;margin:0 0 6px;color:#fff4dc}
+.rosary-meditation{margin:12px 0 0;padding:12px 15px;border-left:2px solid var(--gold);background:#12253199;border-radius:0 8px 8px 0;font-size:13px;color:#dbe2dc}
+.rosary-audio-bar{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:18px 0 6px}
+.rosary-check{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#d8dfd8;cursor:pointer;min-block-size:32px}
+.rosary-check input{accent-color:#e8c88f;width:16px;height:16px}
+.rosary-prose{margin:18px 0 22px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* Timed Prayer Reminders */
+.reminder-panel{margin-top:26px}
+.reminder-head{display:flex;flex-wrap:wrap;align-items:start;justify-content:space-between;gap:16px}
+.reminder-head .eyebrow{color:var(--gold);margin-bottom:6px}
+.reminder-head h2{margin:0 0 6px;font-size:24px;color:#fff2d6}
+.reminder-head-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.reminder-perm-note{font-size:11px;margin:10px 0 18px}
+.reminder-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.reminder-slot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:#142a38cc;border:1px solid var(--line);border-radius:10px}
+.reminder-toggle{display:flex;align-items:start;gap:10px;cursor:pointer;min-width:0;flex:1}
+.reminder-toggle input{accent-color:#e8c88f;width:17px;height:17px;margin-top:3px;flex-shrink:0}
+.reminder-toggle strong{display:block;font:15px Georgia,serif;color:#fff3d6}
+.reminder-toggle small{display:block;font-size:11px;color:#c3ccc6;margin-top:2px}
+.reminder-time{padding:7px 9px;font-size:12px;min-block-size:34px;flex-shrink:0}
+.reminder-sound-row{margin-top:16px}
+/* Top-layer persistent reminder toasts */
+#toast-region{position:fixed;inset:auto 18px 18px auto;z-index:90;display:flex;flex-direction:column;gap:10px;max-width:min(380px,calc(100vw - 24px));pointer-events:none}
+.reminder-toast{pointer-events:auto;position:fixed;inset:auto 18px 18px auto;margin:0;width:min(380px,calc(100vw - 24px));background:rgba(18,35,46,.96);color:var(--ink);border:1px solid #e8c88faa;border-radius:12px;padding:14px 16px;box-shadow:0 18px 50px #040d1599;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);display:flex;align-items:start;justify-content:space-between;gap:12px}
+.reminder-toast[popover]{opacity:1;transition:opacity .2s ease,display .2s ease,overlay .2s ease;transition-behavior:allow-discrete}
+@supports not selector(:popover-open){.reminder-toast[popover]:not(.\:popover-open){display:flex}}
+.reminder-toast .eyebrow{color:var(--gold);margin-bottom:4px}
+.reminder-toast strong{display:block;font:17px Georgia,serif;color:#fff3d6}
+.reminder-toast p{margin:4px 0 0;font-size:12px;color:#d3dbd5}
+.toast-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.toast-go{text-decoration:none;white-space:nowrap;padding:8px 12px}
+.toast-close{border:1px solid var(--line);background:transparent;color:#f6e8c9;border-radius:6px;min-inline-size:32px;min-block-size:32px}
+@media(prefers-reduced-motion:reduce){.reminder-toast[popover]{transition:none}}
+@media(max-width:960px){
+ .rosary-stage{grid-template-columns:1fr}
+ .rosary-beads-panel{position:static}
+}
+@media(max-width:760px){
+ .sidebar{padding:10px 14px}
+ .sidebar nav a{padding:7px 8px}
+ .rosary-beads-panel,.rosary-prayer-card,.reminder-panel{padding:16px}
+ .rosary-prayer-card h2{font-size:24px}
+ .reminder-toast{inset:auto 12px 12px 12px;width:auto}
+}
